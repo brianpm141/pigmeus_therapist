@@ -1,0 +1,9 @@
+{
+  "welcome": "Bienvenido",
+  "login": {
+    "title": "Iniciar Sesión",
+    "email_placeholder": "Correo electrónico",
+    "password_placeholder": "Contraseña",
+    "submit": "Entrar"
+  }
+}

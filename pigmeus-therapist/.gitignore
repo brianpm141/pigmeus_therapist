@@ -39,3 +39,17 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Package Locks (Solo si decides usar Yarn exclusivamente)
+package-lock.json
