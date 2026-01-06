@@ -1,9 +1,7 @@
 {
-  "welcome": "Welcome",
-  "login": {
-    "title": "Sign In",
-    "email_placeholder": "Email address",
-    "password_placeholder": "Password",
-    "submit": "Login"
+  "navigation": {
+    "calendar": "Calendar",
+    "patients": "Patients",
+    "consultations": "Consultations"
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { View } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 // Colores del tema 
 const COLORS = {
@@ -11,6 +11,9 @@ const COLORS = {
 };
 
 export default function TabLayout() {
+
+  const { t } = useTranslation();
+
   return (
     <Tabs
       screenOptions={{
@@ -32,30 +35,31 @@ export default function TabLayout() {
         },
       }}
     >
-      {/* 1. AGENDA */}
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Agenda',
-          tabBarIcon: ({ color }) => <FontAwesome5 name="calendar-alt" size={24} color={color} />,
-        }}
-      />
 
       {/* 2. PACIENTES */}
       <Tabs.Screen
         name="patients"
         options={{
-          title: 'Pacientes',
-          tabBarIcon: ({ color }) => <FontAwesome5 name="user-injured" size={24} color={color} />,
+          title: t('navigation.patients'),
+          tabBarIcon: ({ color }) => <MaterialIcons name="people" size={26} color={color} />,
         }}
       />
 
-      {/* 3. CONSULTAS (Antes Citas) */}
+      {/* 1. AGENDA */}
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: t('navigation.calendar'),
+          tabBarIcon: ({ color }) => <MaterialIcons name="calendar-today" size={24} color={color} />,
+        }}
+      />
+
+      {/* 3. CONSULTAS - */}
       <Tabs.Screen
         name="consultations" 
         options={{
-          title: 'Consultas', // Nombre visible corregido
-          tabBarIcon: ({ color }) => <FontAwesome5 name="notes-medical" size={24} color={color} />, 
+          title: t('navigation.consultations'),
+          tabBarIcon: ({ color }) => <MaterialIcons name="assignment" size={24} color={color} />,
         }}
       />
     </Tabs>
