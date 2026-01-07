@@ -3,12 +3,12 @@ import { Tabs } from 'expo-router';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 
-// Colores del tema 
-const COLORS = {
-  primary: '#13c8ec',
-  inactive: '#94a3b8',
-  surface: '#ffffff',
-};
+const THEME = {
+  primary: '#13c8ec',      // Tu color "primary"
+  inactive: '#94a3b8',     // Tu color "text-secondary"
+  surface: '#ffffff',      // Tu color "surface-light"
+  border: '#e2e8f0',       // Tu color "border-light"
+}
 
 export default function TabLayout() {
 
@@ -18,25 +18,42 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: COLORS.primary,
-        tabBarInactiveTintColor: COLORS.inactive,
+        // Colores activos e inactivos
+        tabBarActiveTintColor: THEME.primary,
+        tabBarInactiveTintColor: THEME.inactive,
+        
+        // Estilo de la barra
         tabBarStyle: {
-          backgroundColor: COLORS.surface,
-          borderTopWidth: 0,
-          elevation: 10,
-          height: 65,
-          paddingBottom: 10,
+          backgroundColor: THEME.surface,
+          borderTopColor: THEME.border,
+          borderTopWidth: 1, // Línea sutil superior
+          elevation: 0,      // Eliminamos la sombra pesada (Android)
+          shadowOpacity: 0,  // Eliminamos la sombra pesada (iOS)
+          height: 70,        // Altura cómoda para dedos
+          paddingBottom: 10, // Espacio inferior (importante en iPhones sin home button)
           paddingTop: 10,
         },
+        
+        // Estilo del texto
         tabBarLabelStyle: {
+          fontFamily: 'Manrope_500Medium', // Usamos la fuente cargada en RootLayout
           fontSize: 12,
-          fontWeight: '600',
-          marginBottom: 5,
+          marginTop: 4,
         },
       }}
     >
 
-      {/* 2. PACIENTES */}
+      {/* AGENDA */}
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: t('navigation.calendar', 'Agenda'),
+          // CAMBIO: Usamos 'calendar-today' que es 100% seguro
+          tabBarIcon: ({ color }) => <MaterialIcons name="calendar-today" size={24} color={color} />,
+        }}
+      />
+
+      {/* PACIENTES */}
       <Tabs.Screen
         name="patients"
         options={{
@@ -45,16 +62,7 @@ export default function TabLayout() {
         }}
       />
 
-      {/* 1. AGENDA */}
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: t('navigation.calendar'),
-          tabBarIcon: ({ color }) => <MaterialIcons name="calendar-today" size={24} color={color} />,
-        }}
-      />
-
-      {/* 3. CONSULTAS - */}
+      {/* CONSULTAS */}
       <Tabs.Screen
         name="consultations" 
         options={{

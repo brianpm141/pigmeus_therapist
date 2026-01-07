@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { 
   useFonts, 
@@ -43,11 +44,14 @@ export default function RootLayout() {
   }
 
   return (
-    <View className="flex-1 bg-background-light dark:bg-background-dark">
-      <StatusBar style="auto" />
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    </View>
+
+    <SafeAreaProvider>
+      <View className="flex-1 bg-background-light dark:bg-background-dark">
+        <StatusBar style="auto" />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </View>
+    </SafeAreaProvider>
   );
 }
