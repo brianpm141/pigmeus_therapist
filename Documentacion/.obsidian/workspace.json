@@ -1,0 +1,223 @@
+{
+  "main": {
+    "id": "9084d587bcd3dd22",
+    "type": "split",
+    "children": [
+      {
+        "id": "56749f2d26a61c31",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b919b165b12e6348",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "UI/FormButton.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "FormButton"
+            }
+          },
+          {
+            "id": "8f462b622cdf5065",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Untitled"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2b8a04fbb6d8ca6c",
+    "type": "split",
+    "children": [
+      {
+        "id": "07dce7e11e57f48b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "10cfb4ddafb9a3fa",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "2cb53c3c5f0bbb15",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "91e28ddb4d2e7429",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ad57f7e25f068d1e",
+    "type": "split",
+    "children": [
+      {
+        "id": "35603688d021e2be",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3fb0ba2d80358656",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "UI/TextArea.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for TextArea"
+            }
+          },
+          {
+            "id": "6e2c1048dbad2572",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "UI/TextArea.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from TextArea"
+            }
+          },
+          {
+            "id": "2626cca52ce10397",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "ab0ee36083601b88",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "8ff602481660d588",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "UI/TextArea.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of TextArea"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "10cfb4ddafb9a3fa",
+  "lastOpenFiles": [
+    "UI/FormButton.md",
+    "Untitled.md",
+    "Untitled",
+    "UI/TextArea.md",
+    "UI/Catálogo de Componentes.md",
+    "UI/FloatingButton.md",
+    "UI/DatePicker.md",
+    "UI/SegmentedControl.md",
+    "UI/Input.md",
+    "Arquitectura/Idiomas ( i18n ).md",
+    "Arquitectura/Carpetas.md",
+    "Arquitectura/Diseño.md",
+    "Arquitectura/Navegacion.md",
+    "Arquitectura/Estilos.md",
+    "Arquitectura/Estilos tailwind.md",
+    "Arquitectura/Idiomas.md",
+    "Arquitectura",
+    "Welcome.md",
+    "UI"
+  ]
+}
