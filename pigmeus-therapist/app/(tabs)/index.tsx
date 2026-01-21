@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { FloatingButton, SegmentedControl } from '@/components/ui/UIComponents';
+import { TextArea, FloatingButton, FormButton} from '@/components/ui/UIComponents';
 
 export default function AgendaScreen() {
 
-  const [ sexo , setSexo ] = useState('');
+  const [ texto , setTexto ] = useState ('');
 
   const handleAddConsultation = () => {
     console.log('Añadir consulta');
+  }
+
+  const handleSave = () => {
+    console.log('Guardar texto:', texto);
   }
 
   return (
@@ -15,7 +19,21 @@ export default function AgendaScreen() {
       <Text className="text-2xl font-bold text-primary">Agenda</Text>
       <Text className="text-text-secondary-dark mt-2">Calendario de citas siguientes</Text>
 
-      <Text>{sexo} </Text>
+      <TextArea 
+        label='Texto'
+        placeholder='Ingresa texto aqui...'
+        value={texto}
+        onChangeText={setTexto}
+      />
+
+      <Text>{texto}</Text>
+
+      <FormButton 
+        title="Guardar Texto"
+        onPress={handleSave}
+      />
+
+      
 
       <FloatingButton onPress={handleAddConsultation} iconName="add" />
     </View>
