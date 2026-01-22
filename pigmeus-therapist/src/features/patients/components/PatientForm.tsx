@@ -3,6 +3,7 @@ import { View, Text, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { FormSection, FormPairRows } from '@/components/layout/Molecules';
 import { Input, SegmentedControl, DatePicker, TextArea, FormButton } from '@/components/ui/UIComponents';
+import { savePatient } from '@/services/patientService';
 
 export const PatientForm = () => {
     const { t } = useTranslation();
@@ -29,6 +30,7 @@ export const PatientForm = () => {
     const [emergencyContact, setEmergencyContact] = useState('');
 
     const [errors, setErrors] = useState<Record<string, string>>({});
+    const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => {
         if (bornDate.toDateString() !== today.toDateString()) {
@@ -41,7 +43,7 @@ export const PatientForm = () => {
         }
     }, [bornDate]);
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
         const newErrors: Record<string, string> = {};
 
         // Validaciones de presencia (vacíos)
@@ -77,6 +79,27 @@ export const PatientForm = () => {
         }
 
         setErrors({});
+        setLoading(true)
+        const patientPayload = {
+            fullName: `${name} ${lastName}`,
+            personalInfo:{ bornDate, age, gender },
+            physicalMetrcs:{
+                weight: parseFloat(weight),
+                height: parseFloat(height)
+            },
+            clinicalRecord: {diagnosis, treatmentPlan},
+            contact: {phone, address, emergencyContact}
+        }
+
+        try {
+            const result = await savePatient(patientPayload) 
+            if(result.success){
+                alert("Alv si funciono nmms")
+            }
+        } catch (e) {
+            alert("nomames que pasho")
+        }
+
         console.log("Formulario válido...");
         // Aquí iría tu lógica de guardado
     };
@@ -207,6 +230,7 @@ export const PatientForm = () => {
                 title={t('actions.save')}
                 onPress={onSubmit}
                 iconName='save'
+                isLoading={loading}
             />
             
             <View className="h-10" />
