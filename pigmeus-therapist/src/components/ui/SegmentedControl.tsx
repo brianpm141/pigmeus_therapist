@@ -14,16 +14,24 @@ interface SegmentedControlProps {
 }
 
 export const SegmentedControl = ({ label, options, value, onChange }: SegmentedControlProps) => {
+  // Colores basados en tu primary (#13c8ec)
+  const PRIMARY_COLOR = '#13c8ec';
+  const LIGHT_BLUE_BG = '#13c8ec08'; // Muy suave para el fondo del "track"
+  const SELECTED_BORDER = '#13c8ec40'; // Borde sutil para el item seleccionado
+
   return (
     <View className="mb-4 w-full">
       {label && (
-        <Text className="text-text-primary font-sans font-medium mb-2 text-base">
+        <Text className="text-text-secondary font-medium mb-2 text-xs uppercase tracking-widest">
           {label}
         </Text>
       )}
 
-      {/* Track Container */}
-      <View className="flex-row bg-slate-100 p-1 rounded-xl h-14 items-center">
+      {/* Track Container: Fondo azul muy clarito */}
+      <View 
+        className="flex-row p-1.5 rounded-2xl h-14 items-center"
+        style={{ backgroundColor: LIGHT_BLUE_BG }}
+      >
         {options.map((option) => {
           const isSelected = option.value === value;
           
@@ -31,24 +39,26 @@ export const SegmentedControl = ({ label, options, value, onChange }: SegmentedC
             <Pressable
               key={option.value}
               onPress={() => onChange(option.value)}
-              // 1. CLASES ESTÁTICAS (Estructura que nunca cambia)
-              className="flex-1 h-full items-center justify-center rounded-lg"
-              // 2. ESTILOS DINÁMICOS (Bypasseamos NativeWind para el estado crítico)
+              className="flex-1 h-full items-center justify-center rounded-xl"
               style={{
+                // El seleccionado es blanco puro con un borde cian muy suave
                 backgroundColor: isSelected ? '#ffffff' : 'transparent',
-                shadowColor: '#000',
-                shadowOffset: { width: 0, height: 1 },
-                shadowOpacity: isSelected ? 0.1 : 0,
-                shadowRadius: 2,
-                elevation: isSelected ? 2 : 0, // Sombra para Android
+                borderWidth: isSelected ? 1 : 0,
+                borderColor: SELECTED_BORDER,
+                // Sombras suaves solo para el seleccionado
+                shadowColor: PRIMARY_COLOR,
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: isSelected ? 0.05 : 0,
+                shadowRadius: 4,
+                elevation: isSelected ? 1 : 0,
               }}
             >
               <Text 
-                // Aquí el texto suele ser menos problemático, podemos dejar className
-                className={`
-                  font-sans text-base
-                  ${isSelected ? 'text-primary font-bold' : 'text-text-secondary font-medium'}
-                `}
+                className={`font-sans text-sm ${
+                  isSelected 
+                    ? 'text-primary font-bold' 
+                    : 'text-text-secondary font-medium opacity-70'
+                }`}
               >
                 {option.label}
               </Text>

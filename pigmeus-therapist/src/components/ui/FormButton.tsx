@@ -2,6 +2,8 @@ import React from 'react';
 import { TouchableOpacity, Text, ActivityIndicator, View } from 'react-native';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { MaterialIcons } from '@expo/vector-icons';
+
 
 // Pequeña utilidad para mezclar clases de Tailwind sin conflictos
 function cn(...inputs: ClassValue[]) {
@@ -12,7 +14,7 @@ interface ButtonProps {
   title: string;
   onPress: () => void;
   variant?: 'primary' | 'outline' | 'ghost' | 'danger';
-  icon?: React.ReactNode;
+  iconName?: React.ComponentProps<typeof MaterialIcons>['name']; // Tipado estricto de nombres de iconos
   isLoading?: boolean;
   disabled?: boolean;
   className?: string;
@@ -22,7 +24,7 @@ export const FormButton = ({
   title,
   onPress,
   variant = 'primary',
-  icon,
+  iconName = undefined,
   isLoading = false,
   disabled = false,
   className,
@@ -60,9 +62,18 @@ export const FormButton = ({
         <ActivityIndicator color={variant === 'outline' ? '#13c8ec' : '#ffffff'} />
       ) : (
         <>
-          {/* Si existe el icono, lo renderizamos con un margen a la derecha */}
-          {icon && <View className="mr-2">{icon}</View>}
-          
+        
+          {iconName && (
+                    <View className="mr-2">
+                      <MaterialIcons 
+                        name={iconName} 
+                        size={22} 
+                        className="text-primary dark:text-primary-light" 
+                      />
+                    </View>
+                  )}
+
+
           <Text className={cn("text-lg font-bold font-manrope text-center", textStyles[variant])}>
             {title}
           </Text>

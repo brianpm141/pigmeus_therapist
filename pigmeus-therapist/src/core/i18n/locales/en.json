@@ -3,5 +3,47 @@
     "calendar": "Calendar",
     "patients": "Patients",
     "consultations": "Consultations"
+  },
+  "actions": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "errors": {
+    "empty": "Empty field",
+    "emptyDate": "Select a date",
+    "exWeight": "Limit 500kg",
+    "exHeight": "Limit 300cm",
+    "invalidPhone": "Invalid phone number"
+  },
+  "FormPatient": {
+    "addPatient": "Add Patient",
+    "editPatient": "Edit Patient",
+    "name": "First Name",
+    "lastName": "Last Name",
+    "physicalInfo": "Physical Information",
+    "weight": "Weight (kg)",
+    "height": "Height (cm)",
+    "gender": "Gender",
+    "bornDate": "Date of Birth",
+    "age": "Age",
+    "agePlaceholder": "Select bornDate",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "medicalData": "Medical Records",
+    "diagnosis": "Diagnosis",
+    "diagnosisPlaceholder": "Describe symptoms, preliminary diagnosis, etc...",
+    "tratamentPlan": "Treatment Plan",
+    "tratamentPlanPlaceholder": "Outline the treatment goals, strategy, etc...",
+    "contactInfo": "Contact Information",
+    "phone": "Phone Number",
+    "email": "Email Address",
+    "address": "Home Address",
+    "adressPlaceholder": "Street, City, Postal Code",
+    "emergencyContact": "Emergency Contact",
+    "emergencyContactPlaceholder": "Phone, email, etc..."
   }
 }
