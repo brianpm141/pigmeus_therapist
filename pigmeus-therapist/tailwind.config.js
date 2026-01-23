@@ -45,10 +45,15 @@ module.exports = {
 
         // Estados (Feedback al usuario)
         status: {
-          success: '#22c55e', // Operación exitosa, Completado
-          warning: '#fb923c', // Alerta, Pendiente, En proceso
-          danger: '#ef4444',  // Error, Eliminar, Acción destructiva
-          new: '#a855f7',     // Elemento nuevo o destacado
+          success: '#22c55e',
+  // Añadimos estas versiones "soft" para los fondos de los iconos
+          'success-soft': '#22c55e20', 
+          warning: '#fb923c',
+          'warning-soft': '#fb923c20',
+          danger: '#ef4444',
+          'danger-soft': '#ef444420',
+          info: '#13c8ec',
+          'info-soft': '#13c8ec20',
         },
 
         // Texto (Contenido legible)

@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { FormSection, FormPairRows } from '@/components/layout/Molecules';
+import { FormSection, FormPairRows, StatusModal } from '@/components/layout/Molecules';
 import { Input, SegmentedControl, DatePicker, TextArea, FormButton } from '@/components/ui/UIComponents';
 import { savePatient } from '@/services/patientService';
+import { setISODay } from 'date-fns';
 
-export const PatientForm = () => {
+interface PatientFormProps {
+    onSuccess: () => void;
+}
+
+export const PatientForm = ({ onSuccess }: PatientFormProps) => {
     const { t } = useTranslation();
     const today = new Date();
 
@@ -31,6 +36,16 @@ export const PatientForm = () => {
 
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [loading, setLoading] = useState<boolean>(false)
+    const [statusModal , setStatusModal] = useState({
+        visible: false,
+        type: 'error' as const,
+        title: '',
+        message: '',
+        confirmLabel:'',
+        cancelLabel:''
+    })
+    
+
 
     useEffect(() => {
         if (bornDate.toDateString() !== today.toDateString()) {
@@ -44,6 +59,7 @@ export const PatientForm = () => {
     }, [bornDate]);
 
     const onSubmit = async () => {
+        setLoading(true)
         const newErrors: Record<string, string> = {};
 
         // Validaciones de presencia (vacíos)
@@ -55,8 +71,6 @@ export const PatientForm = () => {
         if (!diagnosis.trim()) newErrors.diagnosis = t('errors.empty');
         if (!treatmentPlan.trim()) newErrors.treatmentPlan = t('errors.empty');
         if (!phone.trim()) newErrors.phone = t('errors.empty');
-        if (!address.trim()) newErrors.address = t('errors.empty');
-        if (!emergencyContact.trim()) newErrors.emergencyContact = t('errors.empty');
 
         // Validaciones de rangos numéricos (Peso y Altura)
         if (weight && parseFloat(weight) > 500) {
@@ -70,11 +84,12 @@ export const PatientForm = () => {
         if (!phone.trim()) {
             newErrors.phone = t('errors.empty');
         } else if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
-            newErrors.phone = t('errors.invalidPhone'); // Asegúrate de tener esta clave en tu i18n
+            newErrors.phone = t('errors.invalidPhone');
         }
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
+            setLoading(false)
             return;
         }
 
@@ -94,14 +109,19 @@ export const PatientForm = () => {
         try {
             const result = await savePatient(patientPayload) 
             if(result.success){
-                alert("Alv si funciono nmms")
+                onSuccess()
             }
-        } catch (e) {
-            alert("nomames que pasho")
-        }
 
-        console.log("Formulario válido...");
-        // Aquí iría tu lógica de guardado
+        } catch (e) {
+            setStatusModal( (last) => ({
+                ...last,
+                visible: true,
+                title: t('info.errorSavePacient'),
+                message: t('info.errorSavePacient'),
+                confirmLabel:t('info.errorSaveConfirm'),
+            }) );
+            console.error(e);
+        }
     };
 
     return (
@@ -234,6 +254,19 @@ export const PatientForm = () => {
             />
             
             <View className="h-10" />
+
+            <StatusModal
+                isVisible={statusModal.visible}
+                type={statusModal.type}
+                title={t('')}
+                message={statusModal.message}
+                onConfirm={() => {
+                    setStatusModal( (last) => ({...last, visible: false} ))
+                    setLoading(false)
+                }}
+                confirmLabel={statusModal.confirmLabel}
+            />
+
         </ScrollView>
     );
 };

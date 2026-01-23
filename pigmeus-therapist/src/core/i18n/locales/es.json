@@ -9,7 +9,10 @@
     "edit": "Editar",
     "delete": "Eliminar",
     "save": "Guardar",
-    "cancel": "Cancelar"
+    "confirm": "Aceptar",
+    "cancel": "Cancelar",
+    "confirmDelete" : "Eliminar",
+    "confirmDeleteMess": "¿Seguro que deseas eliminar?"
   },
   "errors": {
     "empty":"Campo vacio",
@@ -17,6 +20,17 @@
     "exWeight":"Limite 500kg",
     "exHeight":"Limite 300cm",
     "invalidPhone" : "Telefono no valido"
+  },
+  "info":{
+    "successSavePacient" : "Paciente Registrado",
+    "successSavePacientMess":"Paciente registrado de manera exitosa",
+    "successModifyPacient" : "Paciente Actualizado",
+    "successModifyPacientMess" : "Paciente modificado de manera exitosa",
+    "successDeletePacient" : "Paciente Eliminado",
+    "successDeletePacientMess" : "Paciente eliminado de manera exitosa",
+    "errorSave": "Error al Registrar",
+    "errorSavePacient": "Ocurrio un error al registrar el Paciente, intente de nuevo",
+    "errorSaveConfirm": "Volver a intentar"
   },
   "FormPatient": {
     "addPatient": "Agregar Paciente",

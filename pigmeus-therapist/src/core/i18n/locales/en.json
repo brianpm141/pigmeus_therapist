@@ -9,7 +9,10 @@
     "edit": "Edit",
     "delete": "Delete",
     "save": "Save",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "confirm": "Ok",
+    "confirmDelete": "Delete",
+    "confirmDeleteMess": "Are you sure you want to delete?"
   },
   "errors": {
     "empty": "Empty field",
@@ -18,9 +21,18 @@
     "exHeight": "Limit 300cm",
     "invalidPhone": "Invalid phone number"
   },
+  "info": {
+    "successSavePacient": "Patient Registered",
+    "successSavePacientMess": "Patient registered successfully",
+    "successModifyPacient": "Patient Updated",
+    "successModifyPacientMess": "Patient updated successfully",
+    "successDeletePacient": "Patient Deleted",
+    "successDeletePacientMess": "Patient deleted successfully"
+  },
   "FormPatient": {
     "addPatient": "Add Patient",
     "editPatient": "Edit Patient",
+    "personalData": "Personal Information",
     "name": "First Name",
     "lastName": "Last Name",
     "physicalInfo": "Physical Information",

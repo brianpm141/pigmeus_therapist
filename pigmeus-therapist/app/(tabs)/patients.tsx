@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import { useState } from 'react';
 import { FloatingButton } from '@/components/ui/FloatingButton';
-import { FloatingFormContainer } from '@/components/layout/Molecules';
+import { FloatingFormContainer, StatusModal } from '@/components/layout/Molecules';
 import { useTranslation } from 'react-i18next';
 import { PatientForm } from '@/features/patients/components/PatientForm';
 
@@ -10,10 +10,29 @@ export default function PatientsScreen() {
 
   const { t } = useTranslation();
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [statusModal, setStatusModal] = useState({
+    visible: false,
+    type: 'info' as const,
+    title: '',
+    message: '',
+    confirmLabel: ''
+});
 
   const handleAddPatient = () => {
-    console.log('Abriendo formulario de creacion de paciente...');
     setIsFormVisible(true);
+  }
+
+  const handleSaveSucces = () => {
+    setIsFormVisible(false)
+    setTimeout( () => {
+      setStatusModal({
+            visible: true,
+            type: 'info',
+            title: t('info.successSavePacient'),
+            message: t('info.successSavePacientMess'),
+            confirmLabel: t('actions.confirm') 
+        });
+    } , 400)
   }
 
   const handleCloseForm = () => {
@@ -30,10 +49,20 @@ export default function PatientsScreen() {
     {/* Formulario flotante */}
     <FloatingFormContainer 
     visible={isFormVisible} onClose={handleCloseForm} title={t('FormPatient.addPatient')} iconName='supervised-user-circle'>
-        <PatientForm />
+        <PatientForm onSuccess={handleSaveSucces}/>
     </FloatingFormContainer>
 
-      <FloatingButton onPress={handleAddPatient} iconName="add" />
+    <FloatingButton onPress={handleAddPatient} iconName="add" />
+
+    {/**Modal emergente */}
+    <StatusModal
+            isVisible={statusModal.visible}
+            type={statusModal.type}
+            title={statusModal.title}
+            message={statusModal.message}
+            onConfirm={() => setStatusModal(prev => ({ ...prev, visible: false }))}
+            confirmLabel={statusModal.confirmLabel}
+        />
     </View>
   );
 }
