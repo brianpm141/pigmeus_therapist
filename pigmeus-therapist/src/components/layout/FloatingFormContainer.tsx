@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-const BLUE_PRIMARY = "#13c8ec";
+const BLUE_PRIMARY = "#083144";
 
 interface Props {
     visible: boolean;
@@ -43,7 +43,7 @@ export const FloatingFormContainer = ({ visible, onClose, children, title, iconN
               className="bg-surface-light dark:bg-surface-dark rounded-[24px] overflow-hidden shadow-2xl max-h-[90%]"
             >
               {/* header de la ventana */}
-                <View className="flex-row justify-between items-center px-4 py-4 border-b border-border-light dark:border-border-dark">
+                <View className="bg-primary/60 flex-row justify-between items-center px-4 py-4 border-b border-border-light dark:border-border-dark">
                     <View className="w-10" />
 
                     {/* 2. Título dinámico (puedes pasarle una prop 'title' si gustas) */}
@@ -71,7 +71,7 @@ export const FloatingFormContainer = ({ visible, onClose, children, title, iconN
                     <Pressable 
                     onPress={onClose}
                     className="w-10 h-10 items-center justify-center rounded-full active:bg-gray-100 dark:active:bg-surface-darker">
-                        <Text className="text-xl font-medium text-text-secondary">✕</Text>
+                        <Text className="text-xl text-black font-medium">✕</Text>
                     </Pressable>
                 </View>
 

@@ -1,61 +1,82 @@
 {
-  "navigation": {
-    "calendar": "Calendar",
-    "patients": "Patients",
-    "consultations": "Consultations"
+  "FormPatient": {
+    "addPatient": "Add Patient",
+    "adressPlaceholder": "Street, City, Postal Code",
+    "agePlaceholder": "Select bornDate",
+    "bornDate": "Date of Birth",
+    "contactInfo": "Contact Information",
+    "diagnosisPlaceholder": "Describe symptoms, preliminary diagnosis, etc...",
+    "editPatient": "Edit Patient",
+    "emergencyContact": "Emergency Contact",
+    "emergencyContactPlaceholder": "Phone, email, etc...",
+    "lastName": "Last Name",
+    "medicalData": "Medical Records",
+    "name": "First Name",
+    "personalData": "Personal Information",
+    "physicalInfo": "Physical Information",
+    "tratamentPlanPlaceholder": "Outline the treatment goals, strategy, etc..."
   },
   "actions": {
     "add": "Add",
-    "edit": "Edit",
-    "delete": "Delete",
-    "save": "Save",
     "cancel": "Cancel",
     "confirm": "Ok",
     "confirmDelete": "Delete",
-    "confirmDeleteMess": "Are you sure you want to delete?"
+    "confirmDeleteMess": "Are you sure you want to delete?",
+    "delete": "Delete",
+    "edit": "Edit",
+    "save": "Save"
+  },
+  "common": {
+    "details": "Details",
+    "pacientName": "Patients",
+    "searchPlaceholder": "Search Patient"
+  },
+  "data": {
+    "address": "Home Address",
+    "age": "Age",
+    "diagnosis": "Diagnosis",
+    "email": "Email Address",
+    "female": "Female",
+    "gender": "Gender",
+    "height": "Height (cm)",
+    "male": "Male",
+    "medicalInfo": "Medical Information",
+    "nextAppt": "Next appointment",
+    "noAddress": "No address registered",
+    "noData": "N/A",
+    "noDiagnosis": "No diagnosis",
+    "noGender": "Not registered",
+    "noPending": "Sin cita asignada",
+    "noPhone": "No phone registered",
+    "noTreatmentPlan": "No treatment plan",
+    "other": "Other",
+    "personalInfo": "Personal Information",
+    "phone": "Phone Number",
+    "tratamentPlan": "Treatment Plan",
+    "weight": "Weight (kg)",
+    "years": "años"
   },
   "errors": {
     "empty": "Empty field",
     "emptyDate": "Select a date",
-    "exWeight": "Limit 500kg",
     "exHeight": "Limit 300cm",
+    "exWeight": "Limit 500kg",
     "invalidPhone": "Invalid phone number"
   },
   "info": {
-    "successSavePacient": "Patient Registered",
-    "successSavePacientMess": "Patient registered successfully",
+    "errorSave": "Error saving",
+    "errorSaveConfirm": "Retry",
+    "errorSavePacient": "Error registering patient, please try again",
+    "successDeletePacient": "Patient Deleted",
+    "successDeletePacientMess": "Patient deleted successfully",
     "successModifyPacient": "Patient Updated",
     "successModifyPacientMess": "Patient updated successfully",
-    "successDeletePacient": "Patient Deleted",
-    "successDeletePacientMess": "Patient deleted successfully"
+    "successSavePacient": "Patient Registered",
+    "successSavePacientMess": "Patient registered successfully"
   },
-  "FormPatient": {
-    "addPatient": "Add Patient",
-    "editPatient": "Edit Patient",
-    "personalData": "Personal Information",
-    "name": "First Name",
-    "lastName": "Last Name",
-    "physicalInfo": "Physical Information",
-    "weight": "Weight (kg)",
-    "height": "Height (cm)",
-    "gender": "Gender",
-    "bornDate": "Date of Birth",
-    "age": "Age",
-    "agePlaceholder": "Select bornDate",
-    "male": "Male",
-    "female": "Female",
-    "other": "Other",
-    "medicalData": "Medical Records",
-    "diagnosis": "Diagnosis",
-    "diagnosisPlaceholder": "Describe symptoms, preliminary diagnosis, etc...",
-    "tratamentPlan": "Treatment Plan",
-    "tratamentPlanPlaceholder": "Outline the treatment goals, strategy, etc...",
-    "contactInfo": "Contact Information",
-    "phone": "Phone Number",
-    "email": "Email Address",
-    "address": "Home Address",
-    "adressPlaceholder": "Street, City, Postal Code",
-    "emergencyContact": "Emergency Contact",
-    "emergencyContactPlaceholder": "Phone, email, etc..."
+  "navigation": {
+    "calendar": "Calendar",
+    "consultations": "Consultations",
+    "patients": "Patients"
   }
 }

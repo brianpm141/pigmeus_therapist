@@ -52,7 +52,7 @@ export const FormButton = ({
       activeOpacity={0.8}
       // Clases base + Variante dinámica + Clases externas
       className={cn(
-        "flex-row items-center justify-center py-4 px-6 rounded-2xl w-full",
+        "flex-row items-center justify-center my-3 py-4 px-6 rounded-2xl w-full",
         variants[variant],
         (disabled || isLoading) && "opacity-50",
         className

@@ -18,7 +18,7 @@ export const FloatingButton = ({ onPress, iconName = 'add' }: FloatingButtonProp
             justify-center items-center 
             shadow-lg z-50 elevation-5"
         >
-        <Ionicons name={iconName} size={30} color="#FFFFFF" />
+        <Ionicons name={iconName} size={30} color="#083144" />
         </TouchableOpacity>
     );    
 };

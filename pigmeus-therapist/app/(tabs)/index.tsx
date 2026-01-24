@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { FloatingButton } from '@/components/ui/UIComponents';
-import { StatusModal } from '@/components/layout/Molecules';
 
 export default function AgendaScreen() {
 
