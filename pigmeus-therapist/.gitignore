@@ -54,3 +54,4 @@ Desktop.ini
 
 # Package Locks (Solo si decides usar Yarn exclusivamente)
 package-lock.json
+.env

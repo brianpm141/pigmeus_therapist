@@ -1,4 +1,39 @@
 {
+  "auth": {
+    "welcome": "Bienvenido",
+    "managePatients": "Gestiona tus pacientes de forma profesional",
+    "createProfile": "Empecemos por crear tu perfil",
+    "email": "Correo Electrónico",
+    "emailPlaceholder": "ejemplo@clinica.com",
+    "password": "Contraseña",
+    "passwordPlaceholder": "********",
+    "confirmPassword": "Confirmar Contraseña",
+    "name": "Nombre",
+    "namePlaceholder": "Ej. Juan",
+    "lastName": "Apellidos",
+    "lastNamePlaceholder": "Ej. Pérez",
+    "birthDate": "Fecha de Nacimiento",
+    "birthDatePlaceholder": "DD/MM/AAAA",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "login": "Ingresar",
+    "loginLink": "Inicia Sesión",
+    "register": "Regístrate",
+    "finishRegistration": "Finalizar Registro",
+    "orLoginWith": "O INGRESA CON",
+    "orRegisterWith": "O REGÍSTRATE CON",
+    "noAccount": "¿No tienes cuenta?",
+    "haveAccount": "¿Ya tienes una cuenta?",
+    "privacyPolicy": "Aviso de Privacidad",
+    "privacyText": "He leído y acepto el",
+    "termsText": "y términos de uso.",
+    "errorCredentials": "Por favor, ingresa tus credenciales.",
+    "errorInvalidCredentials": "Correo o contraseña incorrectos.",
+    "errorUnexpected": "Ocurrió un error inesperado. Inténtalo de nuevo.",
+    "errorEmptyFields": "Por favor, completa todos los campos marcados.",
+    "errorPrivacyRequired": "Debes aceptar el Aviso de Privacidad para continuar.",
+    "errorPasswordMismatch": "Las contraseñas no coinciden.",
+    "errorRegistration": "Error en el registro."
+  },
   "FormPatient": {
     "addPatient": "Agregar Paciente",
     "adressPlaceholder": "Calle, Ciudad, Código Postal",
@@ -86,6 +121,7 @@
   "navigation": {
     "calendar": "Agenda",
     "consultations": "Consultas",
-    "patients": "Pacientes"
+    "patients": "Pacientes",
+    "settings": "Ajustes"
   }
 }

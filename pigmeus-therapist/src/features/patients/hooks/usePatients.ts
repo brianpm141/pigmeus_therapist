@@ -6,7 +6,7 @@ import {
   onSnapshot, 
   orderBy 
 } from 'firebase/firestore';
-import { db } from '@/services/firebase'; 
+import { db } from '@/core/firebase/firebaseConfig'; 
 import { Patient } from '@/types/patient';
 
 

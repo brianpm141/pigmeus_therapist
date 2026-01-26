@@ -8,8 +8,6 @@ const [showError, setShowError] = useState<boolean>(false)
 
 const onPress = () => (setShowError(true))
 
-const onConfirm = () => (setShowError(false)) 
-const onCancel = () => (setShowError(false))
 
   return (
     <View className="flex-1 justify-center items-center bg-background-light dark:bg-background-dark">

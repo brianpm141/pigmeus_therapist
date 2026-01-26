@@ -1,12 +1,11 @@
 import "../global.css"; // Estilos
 import "@/core/i18n";   // Configuración de i18n
-import { Stack } from 'expo-router';
-import { View } from 'react-native';
+import { Stack, useRouter, useSegments } from 'expo-router';
+import { View, ActivityIndicator } from 'react-native';
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
 import { 
   useFonts, 
   Manrope_400Regular, 
@@ -14,13 +13,47 @@ import {
   Manrope_700Bold, 
   Manrope_800ExtraBold 
 } from '@expo-google-fonts/manrope';
+import { AuthProvider, useAuth } from "@/features/auth/AuthContext";
 
-// Evita que el splash screen se oculte automáticamente antes de cargar fuentes
-SplashScreen.preventAutoHideAsync();
+  // Evita que el splash screen se oculte automáticamente antes de cargar fuentes
+  SplashScreen.preventAutoHideAsync();
+
+function NavigationGuard() {
+  const { user, isLoading } = useAuth();
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    const inAuthGroup = segments[0] === '(auth)';
+
+    if (!user && !inAuthGroup) {
+      // Si no hay sesión, va a login
+      router.replace('/(auth)/login');
+    } else if (user && inAuthGroup) {
+      // Si ya hay sesión va a la agenda
+      router.replace('/(tabs)');
+    }
+  }, [user, isLoading, segments]);
+
+  if (isLoading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-background-light">
+        <ActivityIndicator size="large" color="#13c8ec" />
+      </View>
+    );
+  }
+
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="(auth)/login" options={{ headerShown: false, animation: 'fade' }} />
+    </Stack>
+  );
+}
 
 export default function RootLayout() {
-
-  // Carga de fuentes 
 
   const [fontsLoaded, error] = useFonts({
     Manrope_400Regular,
@@ -35,7 +68,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (fontsLoaded) {
-      SplashScreen.hideAsync(); // Ocultamos el splash cuando todo está listo
+      SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
 
@@ -43,15 +76,17 @@ export default function RootLayout() {
     return null;
   }
 
-  return (
 
-    <SafeAreaProvider>
-      <View className="flex-1 bg-background-light dark:bg-background-dark">
-        <StatusBar style="auto" />
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-      </View>
-    </SafeAreaProvider>
+
+
+  return (
+      <SafeAreaProvider>
+        <AuthProvider>
+        <View className="flex-1 bg-background-light dark:bg-background-dark">
+          <StatusBar style="auto" />
+          <NavigationGuard />
+        </View>
+        </AuthProvider>
+      </SafeAreaProvider>
   );
 }

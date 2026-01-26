@@ -1,4 +1,4 @@
-import { db } from './firebase';
+import { db } from '@/core/firebase/firebaseConfig';
 import { doc, collection, addDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { Patient } from '@/types/patient';
 
