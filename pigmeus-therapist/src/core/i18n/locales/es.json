@@ -32,7 +32,16 @@
     "errorEmptyFields": "Por favor, completa todos los campos marcados.",
     "errorPrivacyRequired": "Debes aceptar el Aviso de Privacidad para continuar.",
     "errorPasswordMismatch": "Las contraseñas no coinciden.",
-    "errorRegistration": "Error en el registro."
+    "errorRegistration": "Error en el registro.",
+    "changePhoto": "Cambiar foto",
+    "personalInfo": "Información Personal",
+    "changePassword": "Cambiar Contraseña",
+    "yourStats": "Tus Estadísticas",
+    "patients": "Pacientes",
+    "sessions": "Sesiones",
+    "editTitle": "Editar Perfil",
+    "thisMonth": "este mes",
+    "annualTotal": "Total anual"
   },
   "FormPatient": {
     "addPatient": "Agregar Paciente",
@@ -113,6 +122,11 @@
     "successModifyPacientMess": "Paciente modificado de manera exitosa",
     "successSavePacient": "Paciente Registrado",
     "successSavePacientMess": "Paciente registrado de manera exitosa",
+    "successUpdateProfile": "Perfil Actualizado",
+    "successUpdateProfileMess": "Tu perfil ha sido actualizado correctamente",
+    "errorUpdateProfile": "Error al Actualizar",
+    "errorUpdateProfileMess": "Hubo un error al actualizar tu perfil",
+    "errorDeletePatient": "Error al Eliminar Paciente",
     "empty_list": "No tienes pacientes registrados",
     "no_results": "No hay resultados para tu busqueda"
   },

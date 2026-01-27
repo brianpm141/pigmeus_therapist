@@ -1,0 +1,95 @@
+{
+  "version": 3,
+  "projects": {},
+  "selectedDraftVaultPath": "layouts/Index.md",
+  "userScriptFolder": null,
+  "sessionStorage": "data",
+  "sessions": [
+    {
+      "start": "2026-01-27T18:42:33.337Z",
+      "total": 881,
+      "drafts": {
+        "UI/UI Elements/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "Elements/Index.md": {
+          "total": 0,
+          "scenes": {
+            "manuscript": 0
+          }
+        },
+        "UI/Project/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "UI/UI Items/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "layouts/Index.md": {
+          "total": 881,
+          "scenes": {
+            "Catálogo de Layouts": 58,
+            "FloatingFormContainer": 274,
+            "FormPairRows": 123,
+            "FormSection": 154,
+            "StatusModal": 272
+          }
+        }
+      }
+    }
+  ],
+  "showWordCountInStatusBar": true,
+  "startNewSessionEachDay": true,
+  "sessionGoal": 500,
+  "applyGoalTo": "all",
+  "notifyOnGoal": true,
+  "countDeletionsForGoal": false,
+  "keepSessionCount": 30,
+  "sessionFile": "longform-sessions.json",
+  "numberScenes": false,
+  "sceneTemplate": null,
+  "waitForSync": false,
+  "fallbackWaitEnabled": true,
+  "fallbackWaitTime": 5,
+  "workflows": {
+    "Default Workflow": {
+      "name": "Default Workflow",
+      "description": "A starter workflow. Feel free to edit, rename, or delete it and create your own.",
+      "steps": [
+        {
+          "id": "strip-frontmatter",
+          "optionValues": {}
+        },
+        {
+          "id": "remove-links",
+          "optionValues": {
+            "remove-wikilinks": true,
+            "remove-external-links": true
+          }
+        },
+        {
+          "id": "prepend-title",
+          "optionValues": {
+            "format": "$3{#} $1",
+            "separator": "\n\n"
+          }
+        },
+        {
+          "id": "concatenate-text",
+          "optionValues": {
+            "separator": "\\n\\n---\\n\\n"
+          }
+        },
+        {
+          "id": "write-to-note",
+          "optionValues": {
+            "target": "LayoutsIndex.md",
+            "open-after": true
+          }
+        }
+      ]
+    }
+  }
+}

@@ -4,7 +4,7 @@ import {
   signOut,
   AuthError
 } from "firebase/auth";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore"; // Importante
+import { doc, setDoc, serverTimestamp, updateDoc } from "firebase/firestore"; 
 import { auth, db } from "@/core/firebase/firebaseConfig";
 import { LoginCredentials, RegisterCredentials } from "@/types/auth";
 
@@ -25,7 +25,7 @@ export const AuthService = {
         lastName,
         stats: { totalPatients: 0, totalAppointments: 0 }, // Tus contadores precalculados
         createdAt: serverTimestamp(), // Fecha de servidor para evitar errores de zona horaria
-        role: 'therapist'
+        role: 'therapist',
       });
 
       return userCredential.user;
@@ -52,4 +52,21 @@ export const AuthService = {
   },
   
   // ... login con redes sociales pendiente
+};
+
+export const updateTherapistProfile = async (
+  uid: string, 
+  data: { firstName: string; lastName: string; photoURL?: string; birthDate?: Date } 
+) => {
+  try {
+    const therapistRef = doc(db, 'therapists', uid);
+    await updateDoc(therapistRef, {
+      ...data,
+      updatedAt: serverTimestamp(),
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("Error al actualizar perfil:", error);
+    throw error;
+  }
 };

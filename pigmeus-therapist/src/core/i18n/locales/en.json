@@ -32,7 +32,16 @@
     "errorEmptyFields": "Please fill in all required fields.",
     "errorPrivacyRequired": "You must accept the Privacy Policy to continue.",
     "errorPasswordMismatch": "Passwords do not match.",
-    "errorRegistration": "Registration error."
+    "errorRegistration": "Registration error.",
+    "changePhoto": "Change photo",
+    "personalInfo": "Personal Information",
+    "changePassword": "Change Password",
+    "yourStats": "Your Statistics",
+    "patients": "Patients",
+    "sessions": "Sessions",
+    "editTitle": "Edit Profile",
+    "thisMonth": "this month",
+    "annualTotal": "Annual total"
   },
   "FormPatient": {
     "addPatient": "Add Patient",
@@ -111,7 +120,12 @@
     "successModifyPacient": "Patient Updated",
     "successModifyPacientMess": "Patient updated successfully",
     "successSavePacient": "Patient Registered",
-    "successSavePacientMess": "Patient registered successfully"
+    "successSavePacientMess": "Patient registered successfully",
+    "successUpdateProfile": "Profile Updated",
+    "successUpdateProfileMess": "Your profile has been updated successfully",
+    "errorUpdateProfile": "Update Error",
+    "errorUpdateProfileMess": "There was an error updating your profile",
+    "errorDeletePatient": "Error Deleting Patient"
   },
   "navigation": {
     "calendar": "Calendar",

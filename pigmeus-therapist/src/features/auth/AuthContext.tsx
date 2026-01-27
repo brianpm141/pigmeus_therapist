@@ -1,37 +1,65 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from '../../core/firebase/firebaseConfig';
+import { doc, onSnapshot } from 'firebase/firestore'; // Importante para tiempo real
+import { auth, db } from '../../core/firebase/firebaseConfig';
+import { TherapistProfile } from '@/types/users';
 
 interface AuthContextType {
   user: User | null;
+  userProfile: TherapistProfile | null; // El perfil de Firestore
   isLoading: boolean;
   isAuthenticated: boolean;
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
+  userProfile: null,
   isLoading: true,
   isAuthenticated: false,
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [userProfile, setUserProfile] = useState<TherapistProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Escucha en tiempo real si el usuario entra o sale
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+    let unsubscribeProfile: (() => void) | undefined;
+
+    const unsubscribeAuth = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
-      setIsLoading(false);
-      console.log("AuthState cambió:", firebaseUser ? "Sesión activa" : "Sin sesión");
+      
+      if (firebaseUser) {
+        // 1. Si hay usuario, escuchamos su documento en Firestore
+        const profileRef = doc(db, 'therapists', firebaseUser.uid);
+        
+        unsubscribeProfile = onSnapshot(profileRef, (docSnap) => {
+          if (docSnap.exists()) {
+            setUserProfile(docSnap.data() as TherapistProfile);
+          }
+          setIsLoading(false);
+        }, (error) => {
+          console.error("Error escuchando perfil:", error);
+          setIsLoading(false);
+        });
+      } else {
+        // 2. Si no hay usuario, limpiamos todo
+        setUserProfile(null);
+        if (unsubscribeProfile) unsubscribeProfile();
+        setIsLoading(false);
+      }
     });
 
-    return unsubscribe; // Limpieza al desmontar
+    return () => {
+      unsubscribeAuth();
+      if (unsubscribeProfile) unsubscribeProfile();
+    };
   }, []);
 
   return (
     <AuthContext.Provider value={{ 
       user, 
+      userProfile,
       isLoading, 
       isAuthenticated: !!user 
     }}>
@@ -40,5 +68,4 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// Hook personalizado para usar el contexto fácilmente
 export const useAuth = () => useContext(AuthContext);
