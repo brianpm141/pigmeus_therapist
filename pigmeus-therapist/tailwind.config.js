@@ -7,7 +7,6 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
-      // 1. TIPOGRAFÍA (Agregada: Manrope)
       fontFamily: {
         sans: ['Manrope_400Regular', 'System', 'sans-serif'],
         medium: ['Manrope_500Medium', 'sans-serif'],
@@ -15,62 +14,60 @@ module.exports = {
         extrabold: ['Manrope_800ExtraBold', 'sans-serif'],
       },
 
-      // 2. COLORES
       colors: {
-        // Principal (Marca)
         primary: {
-          DEFAULT: '#13c8ec', // Acción principal, enlaces, iconos activos, botones primarios
-          dark: '#0ea5c3',    // Estado Hover/Active del color primario
-          foreground: '#FFFFFF', // Texto sobre fondo primario
+          // 'var(--color-primary)' permite que el ThemeContext cambie el color en tiempo real
+          DEFAULT: 'var(--color-primary)', 
+          dark: 'var(--color-primary-dark)',
+          foreground: '#FFFFFF',
         },
 
-        // Fondos de Pantalla (Backgrounds)
         background: {
-          light: '#f6f8f8', // Fondo general de pantallas en Modo Claro
-          dark: '#101f22',  // Fondo general de pantallas en Modo Oscuro
+          light: '#f8fafc',
+          dark: '#0f172a', 
         },
 
-        // Superficies (Tarjetas, Inputs, Modales)
         surface: {
-          light: '#ffffff', // Contenedor de tarjetas y campos en Modo Claro
-          dark: '#192b2e',  // Contenedor de tarjetas y campos en Modo Oscuro
-          darker: '#142225', // Headers, NavBars o elementos de contraste en Modo Oscuro
+          light: '#ffffff',
+          dark: '#1e293b',   
+          secondary: '#334155', 
+          darker: '#0f172a',
         },
 
-        // Bordes (Separadores, Outlines de Inputs)
         border: {
-          light: '#e2e8f0', // Color de borde sutil en Modo Claro
-          dark: '#334155',  // Color de borde sutil en Modo Oscuro
+          light: '#f1f5f9',
+          dark: '#334155',
         },
 
-        // Estados (Feedback al usuario)
+        text: {
+          primary: '#0f172a',   
+          secondary: '#64748b', 
+          inverse: '#f1f5f9',         
+          'inverse-secondary': '#94a3b8', 
+          'inverse-tertiary': '#64748b',  
+        },
+
         status: {
           success: '#22c55e',
-  // Añadimos estas versiones "soft" para los fondos de los iconos
-          'success-soft': '#22c55e20', 
-          warning: '#fb923c',
-          'warning-soft': '#fb923c20',
+          'success-soft': '#22c55e15',
           danger: '#ef4444',
-          'danger-soft': '#ef444420',
-          info: '#13c8ec',
-          'info-soft': '#13c8ec20',
-        },
-
-        // Texto (Contenido legible)
-        text: {
-          primary: '#0f172a',   // Texto principal, títulos (Modo Claro)
-          secondary: '#94a3b8', // Subtítulos, hints, placeholders (Ambos modos)
-          inverse: '#e2e8f0',   // Texto principal sobre fondos oscuros (Modo Oscuro)
+          'danger-soft': '#ef444415',
+          info: 'var(--color-primary)', // El color de info ahora también sigue al tema
+          'info-soft': 'var(--color-primary-soft)', // Para fondos suaves de iconos
         },
       },
 
-      // 3. BORDES REDONDEADOS (Movido fuera de 'colors')
+      boxShadow: {
+        'soft': '0 2px 15px -3px rgba(19, 200, 236, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.02)',
+      },
+
       borderRadius: {
-        DEFAULT: '4px',
-        lg: '8px',
-        xl: '12px',      // Estándar de tus inputs
-        '2xl': '16px',
-        '3xl': '24px',
+        DEFAULT: '0.5rem',
+        lg: '0.75rem',
+        xl: '1rem',
+        '2xl': '1.25rem',
+        '3xl': '1.5rem',
+        'full': '9999px',
       }
     },
   },

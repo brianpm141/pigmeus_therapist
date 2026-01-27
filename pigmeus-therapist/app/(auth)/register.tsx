@@ -81,10 +81,10 @@ export default function RegisterScreen() {
                 className="w-24 h-24"
                 resizeMode="contain"
               />
-              <Text className="text-text-primary text-3xl font-extrabold text-center mt-2">
+              <Text className="text-text-primary dark:text-text-inverse text-3xl font-extrabold text-center mt-2">
                 {t('auth.welcome')}
               </Text>
-              <Text className="text-text-secondary text-center">
+              <Text className="text-text-secondary dark:text-text-inverse-secondary text-center">
                 {t('auth.createProfile')}
               </Text>
             </View>
@@ -106,7 +106,7 @@ export default function RegisterScreen() {
                 { label: t('auth.confirmPassword'), key: 'confirmPassword', placeholder: t('auth.passwordPlaceholder'), secure: true, icon: 'shield-checkmark-outline' },
               ].map((input) => (
                 <View key={input.key} className="mb-4">
-                  <Text className="text-text-primary font-bold mb-2 ml-1">{input.label}</Text>
+                  <Text className="text-text-primary dark:text-text-inverse font-bold mb-2 ml-1">{input.label}</Text>
                   <View className={`flex-row items-center bg-background-light border ${errors.includes(input.key) ? 'border-status-danger' : 'border-border-light'} rounded-xl px-4 py-3`}>
                     <TextInput
                       placeholder={input.placeholder}
@@ -114,7 +114,7 @@ export default function RegisterScreen() {
                       secureTextEntry={input.secure}
                       autoCapitalize="none"
                       keyboardType={(input.type as any) || 'default'}
-                      className="flex-1 text-text-primary py-1"
+                      className="flex-1 text-text-primary dark:text-text-inverse py-1"
                       value={(form as any)[input.key]}
                       onChangeText={(val) => setForm({ ...form, [input.key]: val })}
                     />
@@ -133,7 +133,7 @@ export default function RegisterScreen() {
               <View className={`w-5 h-5 border rounded-md mr-3 items-center justify-center ${acceptedPrivacy ? 'bg-primary border-primary' : 'border-border-light bg-surface-light'}`}>
                 {acceptedPrivacy && <Ionicons name="checkmark" size={14} color="white" />}
               </View>
-              <Text className="text-text-secondary text-[10px] flex-1 leading-4">
+              <Text className="text-text-secondary dark:text-text-inverse-tertiary text-[10px] flex-1 leading-4">
                 {t('auth.privacyText')} <Text className="text-primary font-bold">{t('auth.privacyPolicy')}</Text> {t('auth.termsText')}
               </Text>
             </TouchableOpacity>
@@ -151,7 +151,7 @@ export default function RegisterScreen() {
 
             {/* Social Register */}
             <View className="mt-8">
-              <Text className="text-text-secondary text-center mb-6 text-xs font-bold">{t('auth.orRegisterWith')}</Text>
+              <Text className="text-text-secondary dark:text-text-inverse-secondary text-center mb-6 text-xs font-bold">{t('auth.orRegisterWith')}</Text>
               <View className="flex-row justify-center space-x-6">
                 <TouchableOpacity className="w-12 h-12 rounded-full border border-border-light items-center justify-center bg-white shadow-sm">
                   <Ionicons name="logo-google" size={20} color="#DB4437" />
@@ -164,7 +164,7 @@ export default function RegisterScreen() {
 
             {/* Footer */}
             <View className="flex-row justify-center mt-8">
-              <Text className="text-text-secondary">{t('auth.haveAccount')} </Text>
+              <Text className="text-text-secondary dark:text-text-inverse-secondary">{t('auth.haveAccount')} </Text>
               <TouchableOpacity onPress={() => router.replace('/(auth)/login')}>
                 <Text className="text-primary font-bold">{t('auth.loginLink')}</Text>
               </TouchableOpacity>

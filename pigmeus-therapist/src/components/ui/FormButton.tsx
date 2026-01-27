@@ -41,7 +41,7 @@ export const FormButton = ({
   const textStyles = {
     primary: "text-white",
     outline: "text-primary",
-    ghost: "text-text-secondary",
+    ghost: "text-text-secondary dark:text-text-inverse-secondary",
     danger: "text-white",
   };
 
@@ -62,16 +62,16 @@ export const FormButton = ({
         <ActivityIndicator color={variant === 'outline' ? '#13c8ec' : '#ffffff'} />
       ) : (
         <>
-        
+
           {iconName && (
-                    <View className="mr-2">
-                      <MaterialIcons 
-                        name={iconName} 
-                        size={22} 
-                        className="text-primary dark:text-primary-light" 
-                      />
-                    </View>
-                  )}
+            <View className="mr-2">
+              <MaterialIcons
+                name={iconName}
+                size={22}
+                className="text-primary dark:text-primary-light"
+              />
+            </View>
+          )}
 
 
           <Text className={cn("text-lg font-bold font-manrope text-center", textStyles[variant])}>

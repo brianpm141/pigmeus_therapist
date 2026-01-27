@@ -6,11 +6,13 @@ import { SettingItem } from '@/components/ui/SettingItem';
 import { AuthService } from '@/services/authService';
 import { useTherapistProfile } from '@/features/auth/hooks/useTherapistProfile';
 import { useColorScheme } from "nativewind"; 
+import { useTheme, THEME_PALETTE } from '@/core/ThemeContext';
 
 export default function SettingsScreen() {
   const { t } = useTranslation();
   const { profile, loading } = useTherapistProfile();
   const { colorScheme, toggleColorScheme } = useColorScheme();
+  const { themeColor, setThemeColor } = useTheme();
 
   const isDark = colorScheme === "dark";
 
@@ -73,6 +75,23 @@ export default function SettingsScreen() {
             />
           }
         />
+      </View>
+
+      <Text className="text-xs font-bold text-text-secondary uppercase tracking-widest mt-6 mb-4 px-2">
+        {t('profile.theme_color')}
+      </Text>
+
+      <View className="bg-surface-light dark:bg-surface-dark p-4 rounded-3xl flex-row justify-between mb-8">
+        {(Object.keys(THEME_PALETTE) as Array<keyof typeof THEME_PALETTE>).map((colorKey) => (
+          <TouchableOpacity
+            key={colorKey}
+            onPress={() => setThemeColor(colorKey)}
+            style={{ backgroundColor: THEME_PALETTE[colorKey].primary }}
+            className={`w-12 h-12 rounded-full border-4 ${
+              themeColor === colorKey ? 'border-white dark:border-slate-400' : 'border-transparent'
+            }`}
+          />
+        ))}
       </View>
 
       {/* logout */}

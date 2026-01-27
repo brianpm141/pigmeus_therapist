@@ -14,6 +14,8 @@ import {
   Manrope_800ExtraBold 
 } from '@expo-google-fonts/manrope';
 import { AuthProvider, useAuth } from "@/features/auth/AuthContext";
+import { ThemeProvider } from '@/core/ThemeContext';
+
 
   // Evita que el splash screen se oculte automáticamente antes de cargar fuentes
   SplashScreen.preventAutoHideAsync();
@@ -82,10 +84,12 @@ export default function RootLayout() {
   return (
       <SafeAreaProvider>
         <AuthProvider>
-        <View className="flex-1 bg-background-light dark:bg-background-dark">
-          <StatusBar style="auto" />
-          <NavigationGuard />
-        </View>
+          <ThemeProvider>
+            <View className="flex-1 bg-background-light dark:bg-background-dark">
+              <StatusBar style="auto" />
+              <NavigationGuard />
+            </View>
+          </ThemeProvider>
         </AuthProvider>
       </SafeAreaProvider>
   );

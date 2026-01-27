@@ -22,19 +22,19 @@ export const SegmentedControl = ({ label, options, value, onChange }: SegmentedC
   return (
     <View className="mb-4 w-full">
       {label && (
-        <Text className="text-text-secondary font-medium mb-2 text-xs uppercase tracking-widest">
+        <Text className="text-text-secondary dark:text-text-inverse-secondary font-medium mb-2 text-xs uppercase tracking-widest">
           {label}
         </Text>
       )}
 
       {/* Track Container: Fondo azul muy clarito */}
-      <View 
+      <View
         className="flex-row p-1.5 rounded-2xl h-14 items-center"
         style={{ backgroundColor: LIGHT_BLUE_BG }}
       >
         {options.map((option) => {
           const isSelected = option.value === value;
-          
+
           return (
             <Pressable
               key={option.value}
@@ -53,12 +53,11 @@ export const SegmentedControl = ({ label, options, value, onChange }: SegmentedC
                 elevation: isSelected ? 1 : 0,
               }}
             >
-              <Text 
-                className={`font-sans text-sm ${
-                  isSelected 
-                    ? 'text-primary font-bold' 
-                    : 'text-text-secondary font-medium opacity-70'
-                }`}
+              <Text
+                className={`font-sans text-sm ${isSelected
+                    ? 'text-primary font-bold'
+                    : 'text-text-secondary dark:text-text-inverse-tertiary font-medium opacity-70'
+                  }`}
               >
                 {option.label}
               </Text>

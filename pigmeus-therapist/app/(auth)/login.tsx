@@ -64,10 +64,10 @@ export default function LoginScreen() {
           />
         </View>
 
-        <Text className="text-text-primary text-3xl font-extrabold text-center mb-2">
+        <Text className="text-text-primary dark:text-text-inverse text-3xl font-extrabold text-center mb-2">
           {t('auth.welcome')}
         </Text>
-        <Text className="text-text-secondary text-center mb-6">
+        <Text className="text-text-secondary dark:text-text-inverse-secondary text-center mb-6">
           {t('auth.managePatients')}
         </Text>
 
@@ -81,11 +81,11 @@ export default function LoginScreen() {
         {/* Formulario */}
         <View className="space-y-4">
           <View className="mb-4">
-            <Text className="text-text-primary font-bold mb-2 ml-1">{t('auth.email')}</Text>
+            <Text className="text-text-primary dark:text-text-inverse font-bold mb-2 ml-1">{t('auth.email')}</Text>
             <View className={`flex-row items-center bg-background-light border ${errors.includes('email') ? 'border-status-danger' : 'border-border-light'} rounded-xl px-4 py-3`}>
               <TextInput
                 placeholder={t('auth.emailPlaceholder')}
-                className="flex-1 text-text-primary"
+                className="flex-1 text-text-primary dark:text-text-inverse"
                 keyboardType="email-address"
                 autoCapitalize="none"
                 value={email}
@@ -96,11 +96,11 @@ export default function LoginScreen() {
           </View>
 
           <View>
-            <Text className="text-text-primary font-bold mb-2 ml-1">{t('auth.password')}</Text>
+            <Text className="text-text-primary dark:text-text-inverse font-bold mb-2 ml-1">{t('auth.password')}</Text>
             <View className={`flex-row items-center bg-background-light border ${errors.includes('password') ? 'border-status-danger' : 'border-border-light'} rounded-xl px-4 py-3`}>
               <TextInput
                 placeholder={t('auth.passwordPlaceholder')}
-                className="flex-1 text-text-primary"
+                className="flex-1 text-text-primary dark:text-text-inverse"
                 secureTextEntry
                 value={password}
                 onChangeText={setPassword}
@@ -128,7 +128,7 @@ export default function LoginScreen() {
 
         {/* Social Login (Círculos) */}
         <View className="mt-8">
-          <Text className="text-text-secondary text-center mb-6 text-xs font-bold">{t('auth.orLoginWith')}</Text>
+          <Text className="text-text-secondary dark:text-text-inverse-secondary text-center mb-6 text-xs font-bold">{t('auth.orLoginWith')}</Text>
           <View className="flex-row justify-center space-x-6">
             <TouchableOpacity className="w-12 h-12 rounded-full border border-border-light items-center justify-center bg-white shadow-sm">
               <Ionicons name="logo-google" size={20} color="#DB4437" />
@@ -140,7 +140,7 @@ export default function LoginScreen() {
         </View>
 
         <View className="flex-row justify-center mt-8">
-          <Text className="text-text-secondary">{t('auth.noAccount')} </Text>
+          <Text className="text-text-secondary dark:text-text-inverse-secondary">{t('auth.noAccount')} </Text>
           <TouchableOpacity onPress={() => router.push('/(auth)/register')}>
             <Text className="text-primary font-bold">{t('auth.register')}</Text>
           </TouchableOpacity>
