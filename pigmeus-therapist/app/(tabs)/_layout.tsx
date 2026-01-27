@@ -1,26 +1,31 @@
 import React from 'react';
+import { View } from 'react-native';
 import { Tabs } from 'expo-router';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useColorScheme } from 'nativewind'; 
-import { useTheme } from '@/core/ThemeContext'; // Importamos tu nuevo hook
+import { useTheme } from '@/core/ThemeContext'; 
+import { MainHeader } from '@/components/layout/MainHeader';
 
 export default function TabLayout() {
   const { t } = useTranslation();
   const { colorScheme } = useColorScheme(); 
-  const { colors } = useTheme(); // Extraemos el color de tema actual (azul, morado, etc.)
+  const { colors } = useTheme(); 
   
   const isDark = colorScheme === 'dark';
 
-  // Sincronizamos con los tokens de tu tailwind.config.js y el ThemeContext
   const THEME = {
-    primary: colors.primary,      // Reacciona al selector de color
-    inactive: isDark ? '#94a3b8' : '#64748b', // text-inverse-secondary vs text-secondary
-    surface: isDark ? '#1e293b' : '#ffffff',  // surface-dark vs surface-light
-    border: isDark ? '#334155' : '#f1f5f9',   // border-dark vs border-light
+    primary: colors.primary,      
+    inactive: isDark ? '#94a3b8' : '#64748b', 
+    surface: isDark ? colors.bgDark : colors.bg, 
+    border: colors.soft,  
   };
 
   return (
+  <View className='flex-1 bg-background-light dark:bg-background-dark'>
+    
+    <MainHeader />
+
     <Tabs
       screenOptions={{
         headerShown: false,
@@ -77,5 +82,9 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+
+  </View>
+
+    
   );
 }

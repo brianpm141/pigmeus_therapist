@@ -1,14 +1,15 @@
 import { Timestamp } from 'firebase/firestore';
 
 export interface Patient {
-  id: string; // ID del documento
+  id: string; 
+  therapistId: string; // ID del terapeuta dueño del registro
   fullName: string;
   personalInfo: {
-    bornDate: Timestamp ;
+    bornDate: Timestamp;
     age: number;
     gender: string;
   };
-  physicalMetrcs: {
+  physicalMetrics: {
     weight: number;
     height: number;
   };
@@ -23,4 +24,6 @@ export interface Patient {
     emergencyContactPhone: string;
   };
   nextAppointment?: string; 
+  createdAt?: Timestamp;
+  updatedAt?: Timestamp;
 }

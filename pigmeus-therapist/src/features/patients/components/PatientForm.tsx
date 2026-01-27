@@ -6,6 +6,7 @@ import { FormSection, FormPairRows, StatusModal } from '@/components/layout/Mole
 import { Input, SegmentedControl, DatePicker, TextArea, FormButton } from '@/components/ui/UIComponents';
 import { savePatient, updatePatient } from '@/services/patientService';
 import { Patient } from '@/types/patient';
+import { useAuth } from '@/features/auth/AuthContext';
 
 interface PatientFormProps {
     onSuccess: (updatedData?: any) => void;
@@ -16,6 +17,7 @@ export const PatientForm = ({ onSuccess , initialData}: PatientFormProps) => {
     const { t } = useTranslation();
     const today = new Date();
     const isEditing = !!initialData;
+    const { user } = useAuth();
 
     const genderOptions = [
         { label: t('data.male'), value: 'male' },
@@ -66,8 +68,8 @@ export const PatientForm = ({ onSuccess , initialData}: PatientFormProps) => {
                 : new Date(initialData.personalInfo.bornDate as any);
             
             setBornDate(date);
-            setWeight(initialData.physicalMetrcs?.weight?.toString() || '');
-            setHeight(initialData.physicalMetrcs?.height?.toString() || '');
+            setWeight(initialData.physicalMetrics?.weight?.toString() || '');
+            setHeight(initialData.physicalMetrics?.height?.toString() || '');
             setGender(initialData.personalInfo?.gender || 'male');
             setDiagnosis(initialData.clinicalRecord?.diagnosis || '');
             setTreatmentPlan(initialData.clinicalRecord?.treatmentPlan || '');
@@ -127,6 +129,11 @@ export const PatientForm = ({ onSuccess , initialData}: PatientFormProps) => {
     }, [bornDate]);
 
     const onSubmit = async () => {
+
+        if (!user?.uid) {
+            throw new Error ("No hay sesion activa")
+        } 
+
         setLoading(true);
         const newErrors: Record<string, string> = {};
 
@@ -149,7 +156,7 @@ export const PatientForm = ({ onSuccess , initialData}: PatientFormProps) => {
                 age, 
                 gender 
             },
-            physicalMetrcs: {
+            physicalMetrics: {
                 weight: parseFloat(weight) || 0,
                 height: parseFloat(height) || 0
             },
@@ -165,9 +172,9 @@ export const PatientForm = ({ onSuccess , initialData}: PatientFormProps) => {
         try {
             let result;
             if (isEditing && initialData?.id) {
-                result = await updatePatient(initialData.id, patientPayload);
+                result = await updatePatient(initialData.id, user.uid, patientPayload);
             } else {
-                result = await savePatient(patientPayload);
+                result = await savePatient(user.uid, patientPayload);
             }
 
             if (result.success) {
@@ -299,7 +306,7 @@ export const PatientForm = ({ onSuccess , initialData}: PatientFormProps) => {
                 />
             </FormSection>
 
-            <FormSection titleKey={t('FormPatient.emergencyContact')}>
+            <FormSection titleKey={t('FormPatient.emergencyContact')} iconName="emergency">
                 <Input
                     label={t('FormPatient.emergencyContactName')} 
                     placeholder={t('FormPatient.emergencyContactPlaceholder')}

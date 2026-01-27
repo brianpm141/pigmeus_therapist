@@ -25,8 +25,8 @@ export const TextArea: React.FC<TextAreaProps> = ({
       <TextInput
         className={`
           bg-surface-light dark:bg-surface-dark
-          border border-border-light 
-          rounded-2xl 
+          border
+          rounded-2xl border-transparent
           p-4 
           text-text-primary dark:text-text-inverse
           font-sans 

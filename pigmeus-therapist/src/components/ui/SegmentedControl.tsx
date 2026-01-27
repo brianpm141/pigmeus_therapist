@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
+import { useTheme } from '@/core/ThemeContext';
 
 interface Option {
   label: string;
@@ -14,10 +15,11 @@ interface SegmentedControlProps {
 }
 
 export const SegmentedControl = ({ label, options, value, onChange }: SegmentedControlProps) => {
-  // Colores basados en tu primary (#13c8ec)
-  const PRIMARY_COLOR = '#13c8ec';
-  const LIGHT_BLUE_BG = '#13c8ec08'; // Muy suave para el fondo del "track"
-  const SELECTED_BORDER = '#13c8ec40'; // Borde sutil para el item seleccionado
+  const { colors } = useTheme(); // Obtener colores dinámicos del tema
+
+  // Generar colores con opacidad basados en el color primario del tema
+  const LIGHT_BG = colors.soft; // Fondo suave del track (ya viene del tema)
+  const SELECTED_BORDER = `${colors.primary}40`; // Borde sutil para el item seleccionado
 
   return (
     <View className="mb-4 w-full">
@@ -27,10 +29,9 @@ export const SegmentedControl = ({ label, options, value, onChange }: SegmentedC
         </Text>
       )}
 
-      {/* Track Container: Fondo azul muy clarito */}
       <View
         className="flex-row p-1.5 rounded-2xl h-14 items-center"
-        style={{ backgroundColor: LIGHT_BLUE_BG }}
+        style={{ backgroundColor: LIGHT_BG }}
       >
         {options.map((option) => {
           const isSelected = option.value === value;
@@ -41,12 +42,10 @@ export const SegmentedControl = ({ label, options, value, onChange }: SegmentedC
               onPress={() => onChange(option.value)}
               className="flex-1 h-full items-center justify-center rounded-xl"
               style={{
-                // El seleccionado es blanco puro con un borde cian muy suave
                 backgroundColor: isSelected ? '#ffffff' : 'transparent',
                 borderWidth: isSelected ? 1 : 0,
                 borderColor: SELECTED_BORDER,
-                // Sombras suaves solo para el seleccionado
-                shadowColor: PRIMARY_COLOR,
+                shadowColor: colors.primary, // Shadow dinámico basado en el tema
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: isSelected ? 0.05 : 0,
                 shadowRadius: 4,
@@ -55,8 +54,8 @@ export const SegmentedControl = ({ label, options, value, onChange }: SegmentedC
             >
               <Text
                 className={`font-sans text-sm ${isSelected
-                    ? 'text-primary font-bold'
-                    : 'text-text-secondary dark:text-text-inverse-tertiary font-medium opacity-70'
+                  ? 'text-primary font-bold'
+                  : 'text-text-secondary dark:text-text-inverse-tertiary font-medium opacity-70'
                   }`}
               >
                 {option.label}

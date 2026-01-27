@@ -43,6 +43,7 @@
     "deletePatient": "Eliminar Paciente",
     "diagnosisPlaceholder": "Describa los síntomas, diagnóstico preliminar, etc...",
     "editPatient": "Editar Paciente",
+    "emergencyContact": "Contacto de emergencia",
     "emergencyContactName": "Nombre de referencia",
     "emergencyContactPhone": "Teléfono del contacto",
     "emergencyContactPlaceholder": "Ej. Julia",
@@ -63,11 +64,6 @@
     "edit": "Editar",
     "save": "Guardar",
     "update": "Actualizar"
-  },
-  "common": {
-    "details": "Detalles",
-    "pacientName": "Pacientes",
-    "searchPlaceholder": "Buscar Paciente"
   },
   "data": {
     "address": "Dirección",
@@ -116,12 +112,28 @@
     "successModifyPacient": "Paciente Actualizado",
     "successModifyPacientMess": "Paciente modificado de manera exitosa",
     "successSavePacient": "Paciente Registrado",
-    "successSavePacientMess": "Paciente registrado de manera exitosa"
+    "successSavePacientMess": "Paciente registrado de manera exitosa",
+    "empty_list": "No tienes pacientes registrados",
+    "no_results": "No hay resultados para tu busqueda"
   },
   "navigation": {
     "calendar": "Agenda",
     "consultations": "Consultas",
     "patients": "Pacientes",
     "settings": "Ajustes"
+  },
+  "profile": {
+    "therapist_role": "Terapeuta",
+    "edit_profile": "Editar Perfil",
+    "config_title": "General",
+    "dark_mode": "Modo Oscuro",
+    "language": "Idioma",
+    "theme_color": "Color del Tema"
+  },
+  "common": {
+    "details": "Detalles",
+    "logout": "Cerrar Sesión",
+    "pacientName": "Lista de Pacientes",
+    "searchPlaceholder": "Buscar Paciente"
   }
 }

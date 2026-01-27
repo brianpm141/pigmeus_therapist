@@ -1,5 +1,4 @@
 import { View, Text, FlatList, ActivityIndicator, TextInput, TouchableOpacity } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useState, useMemo } from 'react';
 import { FloatingButton } from '@/components/ui/FloatingButton';
 import { FloatingFormContainer, StatusModal } from '@/components/layout/Molecules';
@@ -9,26 +8,33 @@ import { usePatients } from '@/features/patients/hooks/usePatients';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Patient } from '@/types/patient';
 import { deletePatient } from '@/services/patientService';
+import { useTheme } from '@/core/ThemeContext';
+import { useAuth } from '@/features/auth/AuthContext';
 
 export default function PatientsScreen() {
 
-  const insets = useSafeAreaInsets()
   const { t } = useTranslation();
   type ModalType = 'info' | 'delete' | 'error';
+  const { colors } = useTheme(); 
+  const { user } = useAuth();
+  
 
  // ---------------------- Gestion de Cards -----------------------
 
-  const { patients, loading } = usePatients('ID_DEL_TERAPEUTA_ACTUAL');
+  const { patients, loading } = usePatients(user?.uid);
   const [search, setSearch] = useState('');
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
   const [isDetailVisible, setIsDetailVisible] = useState(false);
 
 
   const filteredPatients = useMemo(() => {
-    return patients.filter(p => 
-      p.fullName.toLowerCase().includes(search.toLowerCase())
-    );
-  }, [search, patients]);
+  const normalize = (text: string) => 
+    text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const searchNormalized = normalize(search);
+  return patients.filter(p => 
+    normalize(p.fullName).includes(searchNormalized)
+  );
+}, [search, patients]);
 
   const handleOpenDetail = (patient: Patient) => {
   setSelectedPatient(patient);
@@ -122,9 +128,12 @@ const handleSaveSucces = (updatedData?: Patient) => {
   // 2. Función que ejecuta el borrado real
   const handleConfirmDelete = async () => {
   if (!selectedPatient) return;
+  if(!user) {
+    throw new Error ("No hay usuario registrado")
+  }
 
   try {
-    const result = await deletePatient(selectedPatient.id);
+    const result = await deletePatient(selectedPatient.id, user.uid);
     if (result.success) {
       setStatusModal(prev => ({ ...prev, visible: false }));
       
@@ -156,8 +165,7 @@ const handleSaveSucces = (updatedData?: Patient) => {
 
   return (
     <View 
-      className="flex-1 bg-background-light dark:bg-background-dark px-4" // Bajamos px-8 a px-4 para que no sea tan angosto
-      style={{ paddingTop: insets.top + 10 }}
+      className="flex-1 bg-background-light dark:bg-background-dark px-7" 
     >
       {loading ? (
         <View className="flex-1 justify-center items-center">
@@ -165,25 +173,23 @@ const handleSaveSucces = (updatedData?: Patient) => {
         </View>
       ) : (
         <> 
-          {/* USAMOS UN FRAGMENT PARA AGRUPAR HERMANOS */}
           
           {/* FILA TÍTULO */}
-          <View className="flex-row items-center my-3 justify-between">
+          <View className="flex-row items-center justify-between my-3">
             <Text className="text-2xl font-extrabold text-text-primary dark:text-text-inverse">
               {t('common.pacientName')}
             </Text>
 
-            <TouchableOpacity 
-              className="bg-surface-light dark:bg-surface-dark p-3 rounded-xl border border-border-light dark:border-border-dark active:bg-primary/10"
+            { /*<TouchableOpacity 
+              className="bg-surface-light dark:bg-surface-dark p-3 rounded-xl  active:bg-primary/10"
               onPress={() => console.log('Filtros')}
             >
-              <MaterialIcons name="filter-list" size={24} className="text-primary"/>
-            </TouchableOpacity>
+              <MaterialIcons name="filter-list" size={18} className="text-primary" color={colors.primary} />
+            </TouchableOpacity> */}
           </View>
 
-          {/* BUSCADOR: Quitamos flex-1 para que no colapse */}
-          <View className="flex-row items-center bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-xl px-4 h-12 mb-6">
-            <MaterialIcons name="search" size={20} className="text-text-secondary" />
+          <View className="flex-row items-center bg-surface-light dark:bg-surface-dark rounded-xl px-4 h-12 mb-6">
+            <MaterialIcons name="search" size={20} color={colors.primary}/>
             <TextInput
               className="flex-1 ml-2 text-text-primary dark:text-text-inverse font-sans"
               placeholder={t('common.searchPlaceholder')}
@@ -191,6 +197,11 @@ const handleSaveSucces = (updatedData?: Patient) => {
               value={search}
               onChangeText={setSearch}
             />
+            {search.length > 0 && (
+              <TouchableOpacity onPress={() => setSearch('')}>
+                <MaterialIcons name="close" size={20} color="#94a3b8" />
+              </TouchableOpacity>
+            )}
           </View>
 
           {/* LISTADO */}
@@ -207,7 +218,7 @@ const handleSaveSucces = (updatedData?: Patient) => {
             ListEmptyComponent={() => (
               <View className="items-center mt-10">
                 <Text className="text-text-secondary font-medium">
-                  {search ? t('patient.no_results') : t('patient.empty_list')}
+                  {search ? t('info.no_results') : t('info.empty_list')}
                 </Text>
               </View>
             )}

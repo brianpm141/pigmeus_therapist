@@ -64,11 +64,6 @@
     "save": "Save",
     "update": "Update"
   },
-  "common": {
-    "details": "Details",
-    "pacientName": "Patients",
-    "searchPlaceholder": "Search Patient"
-  },
   "data": {
     "address": "Home Address",
     "age": "Age",
@@ -121,6 +116,21 @@
   "navigation": {
     "calendar": "Calendar",
     "consultations": "Consultations",
-    "patients": "Patients"
+    "patients": "Patients",
+    "settings": "Settings"
+  },
+  "profile": {
+    "therapist_role": "Therapist",
+    "edit_profile": "Edit Profile",
+    "config_title": "General",
+    "dark_mode": "Dark Mode",
+    "language": "Language",
+    "theme_color": "Theme Color"
+  },
+  "common": {
+    "details": "Details",
+    "logout": "Logout",
+    "pacientName": "Patients",
+    "searchPlaceholder": "Search Patient"
   }
 }

@@ -16,22 +16,21 @@ module.exports = {
 
       colors: {
         primary: {
-          // 'var(--color-primary)' permite que el ThemeContext cambie el color en tiempo real
           DEFAULT: 'var(--color-primary)', 
           dark: 'var(--color-primary-dark)',
           foreground: '#FFFFFF',
         },
 
         background: {
-          light: '#f8fafc',
-          dark: '#0f172a', 
+          light: 'var(--color-bg-light)',
+          dark: 'var(--color-bg-dark)', 
         },
 
         surface: {
           light: '#ffffff',
-          dark: '#1e293b',   
+          dark: 'rgba(24, 24, 22, 1)',
           secondary: '#334155', 
-          darker: '#0f172a',
+          darker: 'rgba(2, 6, 23, 1)',
         },
 
         border: {

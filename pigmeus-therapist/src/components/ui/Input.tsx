@@ -18,15 +18,17 @@ export const Input = ({ label, error, className, ...props }: InputProps) => {
             )}
 
             <TextInput
+                placeholderTextColor="#9CA3AF"
                 className={`
                 w-full
                 bg-surface-light dark:bg-surface-dark
                 text-text-primary dark:text-text-inverse
-                border rounded-xl
+                rounded-xl
                 px-4 py-3
                 font-sans
                 text-base
-                ${error ? 'border-status-danger' : 'border-border-light focus:border-primary'}
+                border-transparent
+                ${error ? 'border border-status-danger' : 'border border-border-light focus:border-primary'}
                 ${className || ''}
                 `}
                 {...props}
