@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "layouts/Index.md",
+                "file": "Tema/Core/ThemeContext.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Index"
+              "title": "ThemeContext"
             }
           }
         ]
@@ -195,8 +195,27 @@
   },
   "active": "10cfb4ddafb9a3fa",
   "lastOpenFiles": [
-    "layouts/LayoutsIndex.md",
+    "Tema/Guía de Uso.md",
+    "Auth/Views/Register.md",
+    "Auth/Views/Login.md",
+    "Auth/Service/AuthService.md",
+    "Auth/Context/AuthContext.md",
     "layouts/Index.md",
+    "Tema/Core/ThemeContext.md",
+    "Settings/Components/EditProfileForm.md",
+    "Settings/Views/SettingsScreen.md",
+    "Tema/Core",
+    "Tema",
+    "Settings/Views",
+    "Settings/Components",
+    "Settings",
+    "Auth/Views",
+    "Auth/Context",
+    "Auth/Service",
+    "Auth",
+    "layouts/MainHeader.md",
+    "UI/SettingItem.md",
+    "layouts/LayoutsIndex.md",
     "layouts/FormSection.md",
     "layouts/FormPairRows.md",
     "layouts/Catálogo de Layouts.md",
@@ -211,25 +230,6 @@
     "UI/Project/manuscript.md",
     "UI/DatePicker.md",
     "Elements/Index.md",
-    "UI/Project",
-    "Elements/manuscript.md",
-    "Elements",
-    "UI/UI Elements/Index.md",
-    "UI/UI Elements",
-    "layouts/FloatingFormContainer.md",
-    "layouts/StatusModal.md",
-    "Arquitectura/Diseño.md",
-    "Pacientes/Views/PatientForm.md",
-    "Pacientes/Views/PatientDetail.md",
-    "Pacientes/Views/PatientCard.md",
-    "Pacientes/Types/PatientType.md",
-    "Pacientes/Service/UsePatientsHook.md",
-    "Pacientes/Service/PatientService.md",
-    "Pacientes/Service",
-    "Pacientes/Types",
-    "Pacientes/Views",
-    "Pacientes",
-    "layouts",
-    "Arquitectura"
+    "Elements/manuscript.md"
   ]
 }

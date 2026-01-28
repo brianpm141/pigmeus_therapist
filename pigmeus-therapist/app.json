@@ -2,6 +2,7 @@
   "expo": {
     "name": "pigmeus-therapist",
     "slug": "pigmeus-therapist",
+    "owner": "pmbrian311",
     "scheme": "pigmeus-therapist-scheme",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,9 +15,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pmbrian311.pigmeustherapist"
     },
     "android": {
+      "package": "com.pmbrian311.pigmeustherapist",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -29,7 +32,14 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
-    ]
+      "expo-font",
+      "expo-web-browser"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "896c591a-4557-4d49-9dae-3682a8a5bd8c"
+      }
+    }
   }
 }

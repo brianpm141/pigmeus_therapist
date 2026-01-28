@@ -1,4 +1,5 @@
 import { User as FirebaseUser } from 'firebase/auth';
+import { Timestamp } from 'firebase/firestore';
 
 export interface LoginCredentials {
   email: string;
@@ -10,6 +11,8 @@ export interface RegisterCredentials {
   password: string;
   firstName: string; 
   lastName: string;
+  birthDate?: Timestamp | Date;
+  photoURL: string, 
 }
 
 export interface AuthState {
