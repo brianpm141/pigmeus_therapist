@@ -6,6 +6,22 @@
   "sessionStorage": "data",
   "sessions": [
     {
+      "start": "2026-02-02T19:55:58.528Z",
+      "total": 0,
+      "drafts": {
+        "layouts/Index.md": {
+          "total": 0,
+          "scenes": {
+            "Catálogo de Layouts": 0,
+            "FloatingFormContainer": 0,
+            "FormPairRows": 0,
+            "FormSection": 0,
+            "StatusModal": 0
+          }
+        }
+      }
+    },
+    {
       "start": "2026-01-27T18:42:33.337Z",
       "total": 881,
       "drafts": {

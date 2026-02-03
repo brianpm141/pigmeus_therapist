@@ -50,8 +50,7 @@ export const usePatients = (therapistId: string | undefined) => {
         setLoading(false);
       }
     );
-
-    // Limpieza del listener al desmontar el componente
+    
     return () => unsubscribe();
   }, [therapistId]);
 

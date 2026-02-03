@@ -13,46 +13,51 @@ import { useColorScheme } from 'nativewind';
 import { Feather } from '@expo/vector-icons';
 
 interface DatePickerProps {
-  label?: string;
-  value?: Date;
-  onChange: (date: Date) => void;
-  placeholder?: string;
-  error?: string;
-  minimumDate?: Date;
-  maximumDate?: Date;
-  disabled?: boolean;
+  label?: string; // Texto descriptivo encima del campo [cite: 156]
+  value?: Date; // Objeto fecha/hora seleccionado [cite: 156]
+  onChange: (date: Date) => void; // Callback al confirmar [cite: 156]
+  placeholder?: string; // Texto si no hay selección [cite: 156]
+  error?: string; // Mensaje de error (borde rojo) [cite: 156]
+  minimumDate?: Date; // Fecha mínima [cite: 156]
+  maximumDate?: Date; // Fecha máxima [cite: 156]
+  disabled?: boolean; // Deshabilita interacción [cite: 156]
+  mode?: 'date' | 'time'; // Define si es calendario o reloj
 }
 
 export const DatePicker: React.FC<DatePickerProps> = ({
   label,
   value,
   onChange,
-  placeholder = 'Seleccionar fecha',
+  placeholder,
   error,
   minimumDate,
   maximumDate,
   disabled = false,
+  mode = 'date', // Por defecto actúa como selector de fecha [cite: 147]
 }) => {
   const [show, setShow] = useState(false);
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
 
-  // Manejador unificado
+  // Manejador para cerrar y procesar el cambio
   const handleChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
-    // En Android, el picker se cierra al seleccionar
+    // En Android, el picker se cierra inmediatamente tras seleccionar [cite: 150]
     if (Platform.OS === 'android') {
       setShow(false);
     }
     
+    // Solo actualizamos si el usuario presionó "Aceptar" (set)
     if (event.type === 'set' && selectedDate) {
       onChange(selectedDate);
     }
   };
 
-  // Renderizado del texto a mostrar
+  const formatString = mode === 'date' ? 'dd/MM/yyyy' : 'hh:mm a';
+  const defaultPlaceholder = mode === 'date' ? 'Seleccionar fecha' : 'Seleccionar hora';
+  
   const displayValue = value 
-    ? format(value, 'dd/MM/yyyy', { locale: es })
-    : placeholder;
+    ? format(value, formatString, { locale: es })
+    : placeholder || defaultPlaceholder;
 
   const textColorClass = value 
     ? 'text-text-primary dark:text-text-inverse' 
@@ -64,14 +69,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
   return (
     <View className="w-full mb-4">
-      {/* Label */}
+      {/* Etiqueta de campo [cite: 151] */}
       {label && (
-        <Text className="text-text-primary dark:text-text-inverse font-bold mb-2 text-sm ml-1">
+        <Text className="text-text-primary dark:text-text-inverse font-bold mb-2 text-sm ml-1 font-sans">
           {label}
         </Text>
       )}
 
-      {/* Trigger (Input falso) */}
+      {/* Disparador del selector (Trigger) [cite: 151] */}
       <Pressable
         onPress={() => !disabled && setShow(true)}
         className={`
@@ -86,35 +91,35 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           {displayValue}
         </Text>
         
+        {/* Icono dinámico: Calendario para fecha, Reloj para hora */}
         <Feather 
-        name="calendar" 
-        size={20} 
-        color={isDark ? '#e2e8f0' : '#64748b'} 
+          name={mode === 'date' ? "calendar" : "clock"} 
+          size={20} 
+          color={isDark ? '#e2e8f0' : '#64748b'} 
         />
       </Pressable>
 
-      {/* Mensaje de Error */}
+      {/* Mensaje de validación [cite: 154] */}
       {error && (
         <Text className="text-status-danger text-xs mt-1 ml-1 font-medium">
           {error}
         </Text>
       )}
 
-      {/* Lógica de Selección */}
-      
-      {/* ANDROID */}
+      {/* SELECTOR NATIVO ANDROID [cite: 150] */}
       {Platform.OS === 'android' && show && (
         <RNDateTimePicker
           value={value || new Date()}
-          mode="date"
+          mode={mode}
           display="default"
           onChange={handleChange}
           minimumDate={minimumDate}
           maximumDate={maximumDate}
+          is24Hour={false}
         />
       )}
 
-      {/* iOS */}
+      {/* SELECTOR MODAL iOS (Estilo Spinner) [cite: 150] */}
       {Platform.OS === 'ios' && (
         <Modal
           animationType="slide"
@@ -123,26 +128,25 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           onRequestClose={() => setShow(false)}
         >
           <View className="flex-1 justify-end bg-black/40">
-            {/* Contenedor del Picker iOS */}
-            <View className="bg-surface-light dark:bg-surface-dark pb-safe">
+            <View className="bg-surface-light dark:bg-surface-dark pb-safe rounded-t-3xl">
               
-              {/* Toolbar con botón "Listo" */}
-              <View className="flex-row justify-end px-4 py-3 border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-darker rounded-t-2xl">
+              {/* Barra de herramientas iOS */}
+              <View className="flex-row justify-end px-4 py-3 border-b border-border-light dark:border-border-dark">
                 <Pressable onPress={() => setShow(false)} className="p-2">
                   <Text className="text-primary font-bold text-lg">Listo</Text>
                 </Pressable>
               </View>
 
-              {/* Picker */}
+              {/* Picker con soporte de tema oscuro [cite: 153] */}
               <RNDateTimePicker
                 value={value || new Date()}
-                mode="date"
+                mode={mode}
                 display="spinner"
                 onChange={handleChange}
-                textColor={isDark ? '#fff' : '#000'}
+                textColor={isDark ? '#ffffff' : '#0f172a'}
                 minimumDate={minimumDate}
                 maximumDate={maximumDate}
-                style={{ height: 200 }} // Altura fija necesaria en iOS a veces
+                style={{ height: 220 }}
               />
             </View>
           </View>

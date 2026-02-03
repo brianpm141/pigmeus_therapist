@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from '@/core/ThemeContext';
 
 interface FormSectionProps {
-  titleKey: string;
+  titleKey?: string;
   children: React.ReactNode;
   iconName?: React.ComponentProps<typeof MaterialIcons>['name'];
 }
@@ -29,7 +29,7 @@ export const FormSection = ({ titleKey, children, iconName }: FormSectionProps) 
         )}
 
         <Text className="text-lg font-extrabold text-text-primary dark:text-text-inverse">
-          {t(titleKey)}
+          {titleKey &&  t(titleKey)}
         </Text>
       </View>
 

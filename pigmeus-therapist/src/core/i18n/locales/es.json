@@ -108,7 +108,8 @@
     "emptyDate": "Seleccione una fecha",
     "exHeight": "Limite 300cm",
     "exWeight": "Limite 500kg",
-    "invalidPhone": "Teléfono no válido"
+    "invalidPhone": "Teléfono no válido",
+    "required": "Campo requerido"
   },
   "info": {
     "errorDelete": "Error al Eliminar",
@@ -148,6 +149,21 @@
     "details": "Detalles",
     "logout": "Cerrar Sesión",
     "pacientName": "Lista de Pacientes",
-    "searchPlaceholder": "Buscar Paciente"
+    "searchPlaceholder": "Buscar Paciente",
+    "selectDateShort": "Seleccionar fecha",
+    "selectTimeShort": "Seleccionar hora"
+  },
+  "appointments": {
+    "newTitle": "Agendar Nueva Cita",
+    "patientSection": "Seleccion de paciente",
+    "patientLabel": "Paciente",
+    "selectPatient": "Seleccionar paciente",
+    "date": "Fecha",
+    "hour": "Hora",
+    "recurrence": "Recurrencia",
+    "single": "Cita Única",
+    "fridayShort": "V",
+    "saturdayShort": "S",
+    "sundayShort": "D"
   }
 }

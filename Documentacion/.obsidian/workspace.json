@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tema/Core/ThemeContext.md",
+                "file": "layouts/FormSection.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ThemeContext"
+              "title": "FormSection"
             }
           }
         ]
@@ -193,15 +193,17 @@
       "bases:Create new base": false
     }
   },
-  "active": "10cfb4ddafb9a3fa",
+  "active": "b839bf561d9b2d39",
   "lastOpenFiles": [
+    "UI/DatePicker.md",
+    "UI/Input.md",
+    "Tema/Core/ThemeContext.md",
     "Tema/Guía de Uso.md",
     "Auth/Views/Register.md",
     "Auth/Views/Login.md",
     "Auth/Service/AuthService.md",
     "Auth/Context/AuthContext.md",
     "layouts/Index.md",
-    "Tema/Core/ThemeContext.md",
     "Settings/Components/EditProfileForm.md",
     "Settings/Views/SettingsScreen.md",
     "Tema/Core",
@@ -221,14 +223,12 @@
     "layouts/Catálogo de Layouts.md",
     "UI/TextArea.md",
     "UI/UI Items/Index.md",
-    "UI/Input.md",
     "UI/Catálogo de Componentes.md",
     "UI/UI Items/manuscript.md",
     "UI/UI Items/test.md",
     "UI/UI Items",
     "UI/Project/Index.md",
     "UI/Project/manuscript.md",
-    "UI/DatePicker.md",
     "Elements/Index.md",
     "Elements/manuscript.md"
   ]

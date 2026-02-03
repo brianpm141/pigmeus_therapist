@@ -50,7 +50,6 @@ export const FormButton = ({
       onPress={onPress}
       disabled={disabled || isLoading}
       activeOpacity={0.8}
-      // Clases base + Variante dinámica + Clases externas
       className={cn(
         "flex-row items-center justify-center my-3 py-4 px-6 rounded-2xl w-full",
         variants[variant],

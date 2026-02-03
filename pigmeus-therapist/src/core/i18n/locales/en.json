@@ -145,6 +145,39 @@
     "details": "Details",
     "logout": "Logout",
     "pacientName": "Patients",
-    "searchPlaceholder": "Search Patient"
+    "searchPlaceholder": "Search Patient",
+    "selectDateShort": "Select date",
+    "selectTimeShort": "Select time"
+  },
+  "appointments": {
+    "newTitle": "Schedule New Appointment",
+    "patientSection": "Patient Selection",
+    "patientLabel": "Patient",
+    "selectPatient": "Select patient",
+    "date": "Date",
+    "hour": "Time",
+    "recurrence": "Recurrence",
+    "single": "Single Appointment",
+    "program": "Recurring",
+    "repeatDays": "Repeat on days",
+    "endAfter": "End after",
+    "weeks": "Weeks",
+    "untilCancel": "Until canceled",
+    "submit": "Schedule Appointment",
+    "newDate": "Date & Time",
+    "durationMin": "Duration (min)",
+    "inProgress": "In progress",
+    "weeksLeft": "{{count}} weeks left",
+    "singleConsultation": "Single consultation",
+    "periodic": "Recurring"
+  },
+  "days": {
+    "mondayShort": "M",
+    "tuesdayShort": "T",
+    "wednesdayShort": "W",
+    "thursdayShort": "Th",
+    "fridayShort": "F",
+    "saturdayShort": "S",
+    "sundayShort": "Su"
   }
 }

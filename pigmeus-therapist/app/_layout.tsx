@@ -6,19 +6,33 @@ import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { 
-  useFonts, 
-  Manrope_400Regular, 
-  Manrope_500Medium, 
-  Manrope_700Bold, 
-  Manrope_800ExtraBold 
+import {
+  useFonts,
+  Manrope_400Regular,
+  Manrope_500Medium,
+  Manrope_700Bold,
+  Manrope_800ExtraBold
 } from '@expo-google-fonts/manrope';
 import { AuthProvider, useAuth } from "@/features/auth/AuthContext";
 import { ThemeProvider } from '@/core/ThemeContext';
+import {
+  configureReanimatedLogger,
+  ReanimatedLogLevel
+} from 'react-native-reanimated';
 
 
-  // Evita que el splash screen se oculte automáticamente antes de cargar fuentes
-  SplashScreen.preventAutoHideAsync();
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs([
+  "SafeAreaView has been deprecated",
+]);
+
+configureReanimatedLogger({
+  level: ReanimatedLogLevel.warn,
+  strict: false,
+});
+
+SplashScreen.preventAutoHideAsync();
 
 function NavigationGuard() {
   const { user, isLoading } = useAuth();
@@ -82,15 +96,15 @@ export default function RootLayout() {
 
 
   return (
-      <SafeAreaProvider>
-        <AuthProvider>
-          <ThemeProvider>
-            <View className="flex-1 bg-background-light dark:bg-background-dark">
-              <StatusBar style="auto" />
-              <NavigationGuard />
-            </View>
-          </ThemeProvider>
-        </AuthProvider>
-      </SafeAreaProvider>
+    <SafeAreaProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <View className="flex-1 bg-background-light dark:bg-background-dark">
+            <StatusBar style="auto" />
+            <NavigationGuard />
+          </View>
+        </ThemeProvider>
+      </AuthProvider>
+    </SafeAreaProvider>
   );
 }
