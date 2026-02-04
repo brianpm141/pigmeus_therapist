@@ -188,7 +188,7 @@ const handleSaveSucces = (updatedData?: Patient) => {
             </TouchableOpacity> */}
           </View>
 
-          <View className="flex-row items-center bg-surface-light dark:bg-surface-dark rounded-xl px-4 h-12 mb-6">
+          <View className="bg-surface-light dark:bg-surface-dark rounded-full h-12 flex-row items-center px-4 mb-2 shadow-sm border border-border-light dark:border-border-dark">
             <MaterialIcons name="search" size={20} color={colors.primary}/>
             <TextInput
               className="flex-1 ml-2 text-text-primary dark:text-text-inverse font-sans"
