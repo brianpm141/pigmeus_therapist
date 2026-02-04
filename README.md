@@ -2,7 +2,15 @@
 
 Aplicación para gestión de pacientes de terapia física con registro detallado de los pacientes.
 
-## � Requisitos Previos
+## Intalacion
+
+Recomiendo usar el tema claro para vusializar la aplicacion correctamente, el tema oscuro aun se encuentra en desarrollo.
+
+La version previa de la aplicacion se encuentra por el momento solo para Android mediante el apk, para poder ejecutarla en en un emulador o en modo desarrollo se requiere de los siguientes pasos:
+
+## Requisitos Previos
+
+Los datos de la API del archivo .env necesarios para el funcionamiento de la aplicacion no se encuentran, contacta conmigo para obtenerlos o genera un archivo propio con tus datos de la API de firebase.
 
 Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
