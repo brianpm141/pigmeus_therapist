@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { MaterialIcons, Feather } from '@expo/vector-icons';
 import { FloatingFormContainer } from '@/components/layout/Molecules';
@@ -26,15 +26,28 @@ export const AppointmentDetail = ({ visible, item, onClose, onEdit, onDelete }: 
   const timeString = format(item.nextDate, 'HH:mm');
 
   // --- LÓGICA DE VISUALIZACIÓN ---
-  
+
+  // Definimos las etiquetas traducidas para mostrar "Lun, Mar" en lugar de "L, M1"
+  const dayLabels: Record<string, string> = { 
+    'L': t('appointments.mondayAbbr'), 
+    'M1': t('appointments.tuesdayAbbr'), 
+    'M2': t('appointments.wednesdayAbbr'), 
+    'J': t('appointments.thursdayAbbr'), 
+    'V': t('appointments.fridayAbbr'), 
+    'S': t('appointments.saturdayAbbr'), 
+    'D': t('appointments.sundayAbbr') 
+  };
+
   // 1. Próximas fechas (Solo para periódicas)
   const getNextDates = () => {
     if (!isPeriodic) return [];
     const dates = [];
     const pattern = item.data;
-    const dayMap: Record<string, number> = { 'D': 0, 'L': 1, 'M1': 2, 'M2': 3, 'J': 4, 'V': 5, 'S': 6 };
-    const targetDays = pattern.daysOfWeek.map(d => dayMap[d]);
-    
+    // dayMap se mantiene con números para la lógica matemática
+    const dayMap: Record<string, number> = { 'D': 0, 'L': 1, 'M': 2, 'M2': 3, 'J': 4, 'V': 5, 'S': 6 };
+    // @ts-ignore
+    const targetDays = (pattern.daysOfWeek || []).map(d => dayMap[d]);
+
     // Calculamos las siguientes 3 ocurrencias
     let count = 0;
     let checkDate = new Date();
@@ -49,14 +62,14 @@ export const AppointmentDetail = ({ visible, item, onClose, onEdit, onDelete }: 
   };
 
   return (
-    <FloatingFormContainer 
-      visible={visible} 
-      onClose={onClose} 
-      title={t('common.details')} 
+    <FloatingFormContainer
+      visible={visible}
+      onClose={onClose}
+      title={t('common.details')}
       iconName="event-note"
     >
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }}>
-        
+
         {/* HEADER: Hora y Tipo */}
         <View className="items-center mb-6">
           <Text className="text-primary font-extrabold text-5xl font-sans tracking-tighter">
@@ -64,41 +77,42 @@ export const AppointmentDetail = ({ visible, item, onClose, onEdit, onDelete }: 
           </Text>
           <View className={`mt-2 px-3 py-1 rounded-full ${isPeriodic ? 'bg-green-100' : 'bg-blue-100'}`}>
             <Text className={`font-bold text-xs uppercase ${isPeriodic ? 'text-green-700' : 'text-blue-700'}`}>
-              {isPeriodic ? 'Tratamiento Recurrente' : 'Consulta Única'}
+              {isPeriodic ? t('appointments.recurringTreatment') : t('appointments.singleConsultation')}
             </Text>
           </View>
         </View>
 
         {/* PACIENTE */}
-        <SectionHeader title="Paciente" icon="person" />
+        <SectionHeader title={t('appointments.patientLabel')} icon="person" />
         <View className="bg-surface-light dark:bg-surface-dark p-4 rounded-2xl mb-6 border border-border-light dark:border-border-dark">
           <Text className="text-xl font-bold text-text-primary dark:text-text-inverse">
             {patientName}
           </Text>
         </View>
 
-        <SectionHeader title="Planificación" icon="schedule" />
+        <SectionHeader title={t('appointments.planning')} icon="schedule" />
         <View className="bg-surface-light dark:bg-surface-dark p-4 rounded-2xl mb-6 border border-border-light dark:border-border-dark">
           {isPeriodic ? (
             <>
-              <InfoRow label="Frecuencia" value="Semanal" />
-              <InfoRow 
-                label="Días" 
-                value={item.data.daysOfWeek.join(', ')} 
+              <InfoRow label={t('appointments.frequency')} value={t('appointments.weekly')} />
+              <InfoRow
+                label={t('appointments.days')}
+                // CAMBIO AQUÍ: Mapeamos los IDs a nombres traducidos
+                value={(item.data.daysOfWeek || []).map(d => dayLabels[d]).join(', ')}
               />
-              <InfoRow 
-                label="Estado" 
+              <InfoRow
+                label={t('appointments.status')}
                 value={
-                  differenceInWeeks(item.data.lastGeneratedDate.toDate(), new Date()) > 20 
-                  ? "Indefinido (Hasta cancelar)" 
-                  : `Termina en ${differenceInWeeks(item.data.lastGeneratedDate.toDate(), new Date())} semanas`
-                } 
+                  differenceInWeeks(item.data.lastGeneratedDate.toDate(), new Date()) > 20
+                    ? t('appointments.indefinite')
+                    : t('appointments.endsInWeeks', { count: differenceInWeeks(item.data.lastGeneratedDate.toDate(), new Date()) })
+                }
                 last
               />
-              
+
               {/* Próximas sesiones */}
               <View className="mt-4 pt-4 border-t border-border-light dark:border-border-dark">
-                <Text className="text-xs font-bold text-text-secondary uppercase mb-2">Próximas Sesiones</Text>
+                <Text className="text-xs font-bold text-text-secondary uppercase mb-2">{t('appointments.nextSessions')}</Text>
                 {getNextDates().map((d, i) => (
                   <View key={i} className="flex-row items-center mb-2">
                     <Feather name="calendar" size={14} color="#94a3b8" />
@@ -111,28 +125,28 @@ export const AppointmentDetail = ({ visible, item, onClose, onEdit, onDelete }: 
             </>
           ) : (
             <>
-              <InfoRow 
-                label="Fecha" 
-                value={format(item.data.date.toDate(), "EEEE d 'de' MMMM, yyyy", { locale: es })} 
+              <InfoRow
+                label={t('appointments.date')}
+                value={format(item.data.date.toDate(), "EEEE d 'de' MMMM, yyyy", { locale: es })}
               />
-              <InfoRow label="Duración" value={`${item.data.durationMinutes} min`} last />
+              <InfoRow label={t('appointments.durationMin')} value={`${item.data.durationMinutes} min`} last />
             </>
           )}
         </View>
 
         {/* ACCIONES */}
-        <FormButton 
-          title="Editar Consulta" 
-          onPress={onEdit} 
-          iconName="edit" 
-          variant="outline" 
+        <FormButton
+          title={t('appointments.editConsultation')}
+          onPress={onEdit}
+          iconName="edit"
+          variant="outline"
           className="mb-3"
         />
-        <FormButton 
-          title={isPeriodic ? "Detener Tratamiento" : "Cancelar Cita"} 
-          onPress={onDelete} 
-          iconName="delete-forever" 
-          variant="danger" 
+        <FormButton
+          title={isPeriodic ? t('appointments.stopTreatment') : t('appointments.cancelAppointment')}
+          onPress={onDelete}
+          iconName="delete-forever"
+          variant="danger"
         />
 
       </ScrollView>

@@ -16,28 +16,26 @@ interface NewAppointmentFormProps {
   initialData?: ConsultationItem | null;
 }
 
-export const NewAppointmentForm: React.FC<NewAppointmentFormProps> = ({ 
-  visible, 
-  onClose, 
+export const NewAppointmentForm: React.FC<NewAppointmentFormProps> = ({
+  visible,
+  onClose,
   onSuccess,
   onOpenPatientForm,
-  initialData 
+  initialData
 }) => {
   const { t } = useTranslation();
   const { profile } = useTherapistProfile();
   const { patients } = usePatients(profile?.uid);
 
-  const formTitle = initialData ? "Editar Consulta" : t('appointments.newTitle');
+  const formTitle = initialData ? t('formAppointments.editTitle') : t('appointments.newTitle');
 
-  // --- CORRECCIÓN AQUÍ ---
-  // Antes no le pasabas initialData al hook, por eso no cargaba nada.
+
   const { form, actions, ui } = useCreateAppointment(() => {
     onSuccess?.();
-  }, initialData); // <--- AQUI FALTABA PASAR EL DATO
+  }, initialData); 
 
   useEffect(() => {
-    // Solo reseteamos si se cierra el modal Y NO hay datos iniciales (o si prefieres limpiar siempre al cerrar)
-    // Pero el hook ya maneja la carga de datos con su propio useEffect
+
     if (!visible) actions.resetForm();
   }, [visible]);
 
@@ -48,96 +46,93 @@ export const NewAppointmentForm: React.FC<NewAppointmentFormProps> = ({
 
   const weeksInputRef = useRef<TextInput>(null);
 
-  const patientOptions = useMemo(() => 
-    patients.map(p => ({ label: p.fullName, value: p.id })), 
+  const patientOptions = useMemo(() =>
+    patients.map(p => ({ label: p.fullName, value: p.id })),
     [patients]
   );
 
   const daysOfWeek = useMemo(() => [
-    { id: 'L', label: t('days.mondayShort') },
-    { id: 'M1', label: t('days.tuesdayShort') },
-    { id: 'M2', label: t('days.wednesdayShort') },
-    { id: 'J', label: t('days.thursdayShort') },
-    { id: 'V', label: t('days.fridayShort') },
-    { id: 'S', label: t('days.saturdayShort') },
-    { id: 'D', label: t('days.sundayShort') },
+    { id: 'L', label: t('appointments.mondayShort') },
+    { id: 'M1', label: t('appointments.tuesdayShort') },
+    { id: 'M2', label: t('appointments.wednesdayShort') },
+    { id: 'J', label: t('appointments.thursdayShort') },
+    { id: 'V', label: t('appointments.fridayShort') },
+    { id: 'S', label: t('appointments.saturdayShort') },
+    { id: 'D', label: t('appointments.sundayShort') },
   ], [t]);
 
   return (
-    <FloatingFormContainer 
-      visible={visible} 
-      onClose={handleManualClose} 
+    <FloatingFormContainer
+      visible={visible}
+      onClose={handleManualClose}
       title={formTitle}
-      iconName="event" 
+      iconName="event"
     >
-      <FormSection titleKey="appointments.patientSection" iconName='contact-page'> 
-        <OptionSelector 
+      <FormSection titleKey="appointments.patientSection" iconName='contact-page'>
+        <OptionSelector
           label={t('appointments.patientLabel')}
           placeholder={t('appointments.selectPatient')}
           options={patientOptions}
           selectedValue={form.patientId}
           onSelect={(opt) => {
-             form.setPatientId(opt.value);
-             form.setPatientName(opt.label);
+            form.setPatientId(opt.value);
+            form.setPatientName(opt.label);
           }}
           error={ui.errors.patientId ? t(ui.errors.patientId) : undefined}
           onAddNew={onOpenPatientForm}
         />
       </FormSection>
 
-      <FormSection titleKey='holi' iconName='av-timer'>
-      <FormPairRows>
-        <DatePicker 
-          label={t('appointments.date')} 
-          value={form.date}
-          onChange={form.setDate} 
-          placeholder={t('common.selectDateShort', 'Seleccionar')} 
-          error={ui.errors.date ? t(ui.errors.date) : undefined}
-        />
-        <View className="flex-1 flex-row gap-2">
-           <View className="flex-1">
-             <DatePicker 
-               label={t('appointments.hour')} 
-               mode="time" 
-               value={form.time}
-               onChange={form.setTime} 
-               placeholder={t('common.selectTimeShort', 'Seleccionar')} 
-               error={ui.errors.time ? t(ui.errors.time) : undefined}
-             />
-           </View>
-        </View>
-      </FormPairRows>
+      <FormSection titleKey={t('formAppointments.dateForm')} iconName='av-timer'>
+        <FormPairRows>
+          <DatePicker
+            label={t('appointments.date')}
+            value={form.date}
+            onChange={form.setDate}
+            placeholder={t('common.selectDateShort', 'Seleccionar')}
+            error={ui.errors.date ? t(ui.errors.date) : undefined}
+          />
+          <View className="flex-1 flex-row gap-2">
+            <View className="flex-1">
+              <DatePicker
+                label={t('appointments.hour')}
+                mode="time"
+                value={form.time}
+                onChange={form.setTime}
+                placeholder={t('common.selectTimeShort', 'Seleccionar')}
+                error={ui.errors.time ? t(ui.errors.time) : undefined}
+              />
+            </View>
+          </View>
+        </FormPairRows>
         <Input
-          label={t('appointments.durationShort', 'Minutos')} 
-          placeholder="60"
+          label={t('appointments.durationShort', 'Minutos')}
+          placeholder={t('formAppointments.durationPlaceholder')}
           keyboardType="number-pad"
           value={form.duration}
           onChangeText={form.setDuration}
-          className="text-center" 
+          className="text-center"
           error={ui.errors.duration ? t(ui.errors.duration) : undefined}
         />
-        </FormSection>
+      </FormSection>
 
-       <View className="mt-4">
-        <Text className="font-bold mb-2 text-text-primary dark:text-text-inverse font-sans">
-          {t('appointments.recurrence')}
-        </Text>
-        <SegmentedControl 
+      <FormSection titleKey={t('formAppointments.recurrence')} iconName='timeline'>
+        <SegmentedControl
           options={[
             { label: t('appointments.single'), value: 'single' },
-            { label: t('appointments.program'), value: 'program' }
+            { label: t('formAppointments.program'), value: 'program' }
           ]}
           value={form.recurrence}
           onChange={(val) => form.setRecurrence(val as any)}
         />
-      </View>
+      
 
       {form.recurrence === 'program' && (
         <View className="mt-6 bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-border-light dark:border-border-dark">
           <Text className="font-bold mb-4 text-text-primary dark:text-text-inverse font-sans text-sm">
             {t('appointments.repeatDays')}
           </Text>
-          
+
           <View className="flex-row justify-between mb-6">
             {daysOfWeek.map((day) => {
               const isSelected = form.selectedDays.includes(day.id);
@@ -145,11 +140,10 @@ export const NewAppointmentForm: React.FC<NewAppointmentFormProps> = ({
                 <TouchableOpacity
                   key={day.id}
                   onPress={() => actions.toggleDay(day.id)}
-                  className={`w-9 h-9 rounded-lg items-center justify-center border ${
-                    isSelected 
-                      ? 'bg-primary border-primary' 
-                      : 'border-border-light dark:border-border-dark bg-white dark:bg-surface-darker'
-                  }`}
+                  className={`w-9 h-9 rounded-lg items-center justify-center border ${isSelected
+                    ? 'bg-primary border-primary'
+                    : 'border-border-light dark:border-border-dark bg-white dark:bg-surface-darker'
+                    }`}
                 >
                   <Text className={`font-bold text-xs ${isSelected ? 'text-white' : 'text-text-secondary'}`}>
                     {day.label}
@@ -164,14 +158,13 @@ export const NewAppointmentForm: React.FC<NewAppointmentFormProps> = ({
             {t('appointments.endAfter')}
           </Text>
 
-          <TouchableOpacity 
+          <TouchableOpacity
             activeOpacity={0.9}
             onPress={() => weeksInputRef.current?.focus()}
-            className={`flex-row items-center p-3 mb-2 rounded-lg border ${
-              form.endCondition === 'weeks' 
-                ? 'border-primary bg-primary/5' 
-                : 'border-border-light dark:border-border-dark'
-            }`}
+            className={`flex-row items-center p-3 mb-2 rounded-lg border ${form.endCondition === 'weeks'
+              ? 'border-primary bg-primary/5'
+              : 'border-border-light dark:border-border-dark'
+              }`}
           >
             <View className={`w-4 h-4 rounded-full border items-center justify-center ${form.endCondition === 'weeks' ? 'border-primary' : 'border-text-secondary'}`}>
               {form.endCondition === 'weeks' && <View className="w-2 h-2 rounded-full bg-primary" />}
@@ -192,15 +185,14 @@ export const NewAppointmentForm: React.FC<NewAppointmentFormProps> = ({
               </Text>
             </View>
           </TouchableOpacity>
-           {ui.errors.weeks && <Text className="text-status-danger text-xs ml-2 mb-2">{t(ui.errors.weeks)}</Text>}
-            
-          <TouchableOpacity 
+          {ui.errors.weeks && <Text className="text-status-danger text-xs ml-2 mb-2">{t(ui.errors.weeks)}</Text>}
+
+          <TouchableOpacity
             onPress={() => form.setEndCondition('manual')}
-            className={`flex-row items-center p-3 rounded-lg border ${
-              form.endCondition === 'manual' 
-                ? 'border-primary bg-primary/5' 
-                : 'border-border-light dark:border-border-dark'
-            }`}
+            className={`flex-row items-center p-3 rounded-lg border ${form.endCondition === 'manual'
+              ? 'border-primary bg-primary/5'
+              : 'border-border-light dark:border-border-dark'
+              }`}
           >
             <View className={`w-4 h-4 rounded-full border items-center justify-center ${form.endCondition === 'manual' ? 'border-primary' : 'border-text-secondary'}`}>
               {form.endCondition === 'manual' && <View className="w-2 h-2 rounded-full bg-primary" />}
@@ -211,9 +203,10 @@ export const NewAppointmentForm: React.FC<NewAppointmentFormProps> = ({
           </TouchableOpacity>
         </View>
       )}
+      </FormSection>
 
-      <FormButton 
-        title={t('appointments.submit')} 
+      <FormButton
+        title={t('appointments.submit')}
         className="mt-8 mb-4"
         onPress={actions.submit}
         isLoading={ui.isSubmitting}

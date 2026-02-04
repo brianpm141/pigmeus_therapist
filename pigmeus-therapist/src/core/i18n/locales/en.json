@@ -52,6 +52,7 @@
     "deletePatient": "Delete Patient",
     "diagnosisPlaceholder": "Describe symptoms, preliminary diagnosis, etc...",
     "editPatient": "Edit Patient",
+    "emergencyContact": "Emergency Contact",
     "emergencyContactName": "Reference Name",
     "emergencyContactPhone": "Contact Phone",
     "emergencyContactPlaceholder": "Phone, email, etc...",
@@ -107,7 +108,8 @@
     "emptyDate": "Select a date",
     "exHeight": "Limit 300cm",
     "exWeight": "Limit 500kg",
-    "invalidPhone": "Invalid phone number"
+    "invalidPhone": "Invalid phone number",
+    "required": "Required field"
   },
   "info": {
     "errorDelete": "Error Deleting",
@@ -125,7 +127,9 @@
     "successUpdateProfileMess": "Your profile has been updated successfully",
     "errorUpdateProfile": "Update Error",
     "errorUpdateProfileMess": "There was an error updating your profile",
-    "errorDeletePatient": "Error Deleting Patient"
+    "errorDeletePatient": "Error Deleting Patient",
+    "empty_list": "No patients registered",
+    "no_results": "No results for your search"
   },
   "navigation": {
     "calendar": "Calendar",
@@ -169,15 +173,46 @@
     "inProgress": "In progress",
     "weeksLeft": "{{count}} weeks left",
     "singleConsultation": "Single consultation",
-    "periodic": "Recurring"
-  },
-  "days": {
+    "periodic": "Recurring",
+    "planning": "Planning",
+    "frequency": "Frequency",
+    "weekly": "Weekly",
+    "days": "Days",
+    "status": "Status",
+    "indefinite": "Indefinite (Until canceled)",
+    "endsInWeeks": "Ends in {{count}} weeks",
+    "nextSessions": "Upcoming Sessions",
+    "editConsultation": "Edit Consultation",
+    "stopTreatment": "Stop Treatment",
+    "cancelAppointment": "Cancel Appointment",
+    "singleShort": "Single",
+    "recurringTreatment": "Recurring Treatment",
     "mondayShort": "M",
     "tuesdayShort": "T",
     "wednesdayShort": "W",
     "thursdayShort": "Th",
     "fridayShort": "F",
     "saturdayShort": "S",
-    "sundayShort": "Su"
+    "sundayShort": "Su",
+    "mondayAbbr": "Mon",
+    "tuesdayAbbr": "Tue",
+    "wednesdayAbbr": "Wed",
+    "thursdayAbbr": "Thu",
+    "fridayAbbr": "Fri",
+    "saturdayAbbr": "Sat",
+    "sundayAbbr": "Sun",
+    "plural": "Appointments",
+    "singular": "Appointment"
+  },
+  "formAppointments": {
+    "editTitle": "Edit Appointment",
+    "durationPlaceholder": "60",
+    "program": "Recurring",
+    "dateForm": "Date and Time ",
+    "recurrence": "Frequency",
+    "success": "Appointment Registered",
+    "successText": "The appointment has been scheduled successfully.",
+    "successTextAct": "Appointment updated successfully.",
+    "confirmRegister": "Continue with Appointment"
   }
 }

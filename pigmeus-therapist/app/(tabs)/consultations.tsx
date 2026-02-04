@@ -111,18 +111,16 @@ export default function ConsultationsScreen() {
         setStatusModal({
             visible: true,
             type: 'info', 
-            title: t('info.success'), 
-            message: selectedItem ? "Consulta actualizada correctamente." : "La consulta se ha programado correctamente.",
+            title: t('formAppointments.success'), 
+            message: selectedItem ? t('formAppointments.successTextAct') : t('formAppointments.successText'),
             confirmLabel: t('actions.confirm'),
             onConfirm: () => setStatusModal(prev => ({...prev, visible: false}))
         });
     }, 400);
   };
 
-  // --- LÓGICA DE NUEVO PACIENTE ---
   const handleOpenPatientForm = () => {
     setIsFormVisible(false); 
-    // No limpiamos selectedItem aquí para que al volver se mantenga el estado si estábamos editando
     setTimeout(() => setIsPatientFormVisible(true), 300); 
   };
 
@@ -134,8 +132,8 @@ export default function ConsultationsScreen() {
             visible: true,
             type: 'info',
             title: t('info.successSavePacient'),
-            message: "Paciente registrado. Ahora puedes seleccionarlo.",
-            confirmLabel: "Continuar con la Cita",
+            message: t('info.successSavePacientMess'),
+            confirmLabel: t('formAppointments.confirmRegister'),
             onConfirm: () => {
                 setStatusModal(prev => ({...prev, visible: false}));
                 setIsFormVisible(true); 
@@ -156,7 +154,7 @@ export default function ConsultationsScreen() {
           {/* Header */}
           <View className="flex-row items-center justify-between my-3">
             <Text className="text-2xl font-extrabold text-text-primary dark:text-text-inverse">
-              {t('common.pacientName', 'Consultas')}
+              {t('common.pacientName')}
             </Text>
           </View>
         
@@ -188,8 +186,8 @@ export default function ConsultationsScreen() {
             renderItem={({ item }) => (
               <AppointmentCard 
                 item={item} 
-                onPress={() => handleOpenDetail(item)} // Abre detalle al tocar la tarjeta
-                onCancel={confirmCancel} // Mantiene botón rápido de cancelar
+                onPress={() => handleOpenDetail(item)}
+                onCancel={confirmCancel} 
               />
             )}
             
@@ -200,7 +198,7 @@ export default function ConsultationsScreen() {
                 </Text>
                 <View className="bg-primary/10 px-2 py-1 rounded-md">
                   <Text className="text-primary text-xs font-bold uppercase">
-                    {data.length} {data.length === 1 ? 'Cita' : 'Citas'}
+                    {data.length} {data.length === 1 ? t('appointments.singular') : t('appointments.plural')}
                   </Text>
                 </View>
               </View>
@@ -220,18 +218,15 @@ export default function ConsultationsScreen() {
             }
           />
 
-          {/* FAB Principal */}
           <FloatingButton 
             iconName="add" 
             onPress={() => {
-                setSelectedItem(null); // Aseguramos que es modo CREAR
+                setSelectedItem(null); 
                 setIsFormVisible(true);
             }} 
           />
 
-          {/* --- DETALLES Y FORMULARIOS --- */}
-          
-          {/* 1. Detalle de Consulta */}
+
           <AppointmentDetail
             visible={isDetailVisible}
             item={selectedItem}
@@ -240,16 +235,14 @@ export default function ConsultationsScreen() {
             onDelete={handleDeleteFromDetail}
           />
 
-          {/* 2. Formulario de Cita (Crear/Editar) */}
           <NewAppointmentForm
             visible={isFormVisible}
-            onClose={handleCloseForm} // Usamos el handler que limpia selección
+            onClose={handleCloseForm} 
             onSuccess={handleAppointmentSuccess} 
             onOpenPatientForm={handleOpenPatientForm}
-            initialData={selectedItem} // Pasamos datos si estamos editando
+            initialData={selectedItem} 
           />
 
-          {/* 3. Formulario de Paciente */}
           <FloatingFormContainer
              visible={isPatientFormVisible}
              onClose={() => {
@@ -264,7 +257,6 @@ export default function ConsultationsScreen() {
              />
           </FloatingFormContainer>
 
-          {/* --- MODAL DE ESTADO --- */}
           <StatusModal
             isVisible={statusModal.visible}
             type={statusModal.type}
