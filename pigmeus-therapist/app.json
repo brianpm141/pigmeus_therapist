@@ -21,7 +21,7 @@
     "android": {
       "package": "com.pmbrian311.pigmeustherapist",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/logo.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
