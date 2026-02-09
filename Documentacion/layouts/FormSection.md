@@ -10,11 +10,11 @@ Componente contenedor para secciones de formulario. Agrupa inputs bajo un títul
 
 ## Props
 
-| Propiedad | Tipo | Requerido | Valor por defecto | Descripción |
-| --------- | ---- | --------- | ----------------- | ----------- |
-| `titleKey` | `string` | Sí | - | Clave de traducción (i18n) para el título de la sección. |
-| `children` | `React.ReactNode` | Sí | - | Elementos del formulario a agrupar en esta sección. |
-| `iconName` | `MaterialIcons Name` | No | - | Nombre del icono de la librería MaterialIcons a mostrar junto al título. |
+| Propiedad  | Tipo                 | Requerido | Valor por defecto | Descripción                                                              |
+| ---------- | -------------------- | --------- | ----------------- | ------------------------------------------------------------------------ |
+| `titleKey` | `string`             | Sí        | -                 | Clave de traducción (i18n) para el título de la sección.                 |
+| `children` | `React.ReactNode`    | Sí        | -                 | Elementos del formulario a agrupar en esta sección.                      |
+| `iconName` | `MaterialIcons Name` | No        | -                 | Nombre del icono de la librería MaterialIcons a mostrar junto al título. |
 
 ## Ejemplo de uso
 

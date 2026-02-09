@@ -1,10 +1,86 @@
 {
   "version": 3,
   "projects": {},
-  "selectedDraftVaultPath": "layouts/Index.md",
+  "selectedDraftVaultPath": "UI/UI  Index/Index.md",
   "userScriptFolder": null,
   "sessionStorage": "data",
   "sessions": [
+    {
+      "start": "2026-02-09T19:46:11.082Z",
+      "total": 3545,
+      "drafts": {
+        "layouts/Index.md": {
+          "total": 1801,
+          "scenes": {
+            "Catálogo de Layouts": 0,
+            "FloatingFormContainer": 0,
+            "FormPairRows": 0,
+            "FormSection": 0,
+            "StatusModal": 0,
+            "LayoutsIndex": 1652,
+            "MainHeader": 149
+          }
+        },
+        "UI/UI Index/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "UI/Index.md": {
+          "total": 0,
+          "scenes": {}
+        },
+        "UI/UI Index Elements/Index.md": {
+          "total": 654,
+          "scenes": {
+            "Catálogo de Componentes": 63,
+            "DatePicker": 233,
+            "FloatingButton": 125,
+            "FormButton": 233
+          }
+        },
+        "UI/UI Index Elements/Index 1.md": {
+          "total": 1090,
+          "scenes": {
+            "undefined": 0,
+            "Input": 209,
+            "OptionSelector": 273,
+            "SegmentedControl": 192,
+            "SettingItem": 205,
+            "TextArea": 211
+          }
+        },
+        "UI/UI  Index/Index.md": {
+          "total": 1744,
+          "scenes": {
+            "Catálogo de Componentes": 63,
+            "DatePicker": 233,
+            "FloatingButton": 125,
+            "Input": 209,
+            "FormButton": 233,
+            "OptionSelector": 273,
+            "SegmentedControl": 192,
+            "TextArea": 211,
+            "SettingItem": 205
+          }
+        }
+      }
+    },
+    {
+      "start": "2026-02-04T22:19:39.371Z",
+      "total": 0,
+      "drafts": {
+        "layouts/Index.md": {
+          "total": 0,
+          "scenes": {
+            "Catálogo de Layouts": 0,
+            "FloatingFormContainer": 0,
+            "FormPairRows": 0,
+            "FormSection": 0,
+            "StatusModal": 0
+          }
+        }
+      }
+    },
     {
       "start": "2026-02-04T01:35:36.961Z",
       "total": 0,

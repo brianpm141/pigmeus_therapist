@@ -10,5 +10,7 @@ longform:
     - FormPairRows
     - FormSection
     - StatusModal
+    - LayoutsIndex
+    - MainHeader
   ignoredFiles: []
 ---
