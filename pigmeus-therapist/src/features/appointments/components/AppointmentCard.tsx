@@ -50,7 +50,6 @@ export const AppointmentCard = ({ item, onCancel, onPress }: Props) => {
       className="bg-surface-light dark:bg-surface-dark p-4 mb-3 rounded-3xl shadow-sm border border-border-light dark:border-border-dark"
     >
 
-      {/* Cabecera: Hora y Etiqueta */}
       <View className="flex-row justify-between items-start mb-2">
         <View>
           <Text className="text-primary font-extrabold text-2xl font-sans tracking-tight">

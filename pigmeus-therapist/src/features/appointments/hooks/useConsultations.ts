@@ -14,9 +14,7 @@ const getNextPatternOccurrence = (pattern: RecurrencePattern): Date => {
     const checkDate = addDays(today, i);
     const currentDay = getDay(checkDate);
     
-    // Si hoy coincide con un día del patrón
     if (targetDays.includes(currentDay)) {
-      // Verificamos la hora
       const occurrence = new Date(checkDate);
       const patternTime = pattern.time.toDate();
       occurrence.setHours(patternTime.getHours(), patternTime.getMinutes(), 0, 0);

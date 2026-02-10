@@ -129,7 +129,12 @@
     "errorUpdateProfileMess": "Hubo un error al actualizar tu perfil",
     "errorDeletePatient": "Error al Eliminar Paciente",
     "empty_list": "No tienes pacientes registrados",
-    "no_results": "No hay resultados para tu busqueda"
+    "no_results": "No hay resultados para tu busqueda",
+    "genericError": "Error",
+    "confirmError": "No se pudo confirmar la cita.",
+    "cancelTitle": "¿Cancelar Cita?",
+    "cancelMessage": "¿Estás seguro? Esta acción no se puede deshacer.",
+    "yesCancel": "Sí, Cancelar"
   },
   "navigation": {
     "calendar": "Agenda",
@@ -143,7 +148,8 @@
     "config_title": "General",
     "dark_mode": "Modo Oscuro",
     "language": "Idioma",
-    "theme_color": "Color del Tema"
+    "theme_color": "Color del Tema",
+    "available": "Disponible"
   },
   "common": {
     "details": "Detalles",
@@ -214,5 +220,11 @@
     "successText": "La consulta se ha programado correctamente.",
     "successTextAct": "Consulta actualizada correctamente.",
     "confirmRegister": "Continuar con la Cita"
+  },
+  "appointmentStatus": {
+  "scheduled": "Pendiente",
+  "confirmed": "Confirmado",
+  "cancelled": "Cancelado",
+  "completed": "Completada"
   }
 }

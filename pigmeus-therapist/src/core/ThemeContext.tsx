@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo } from 'react';
 import { View } from 'react-native';
 import { vars } from "nativewind"; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -102,21 +102,22 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Centralizamos la inyección de variables dinámicas
-  const themeVars = vars({
+  const themeVars = useMemo(() => vars({
     '--color-primary': THEME_PALETTE[themeColor].primary,
     '--color-primary-dark': THEME_PALETTE[themeColor].dark,
     '--color-primary-soft': THEME_PALETTE[themeColor].soft,
     '--color-bg-light': THEME_PALETTE[themeColor].bg,
     '--color-bg-dark': THEME_PALETTE[themeColor].bgDark,
-  });
+  }), [themeColor]);
+
+  const contextValue = useMemo(() => ({ 
+    themeColor, 
+    setThemeColor: handleSetThemeColor, 
+    colors: THEME_PALETTE[themeColor] 
+  }), [themeColor]);
 
   return (
-    <ThemeContext.Provider value={{ 
-      themeColor, 
-      setThemeColor: handleSetThemeColor, 
-      colors: THEME_PALETTE[themeColor] 
-    }}>
-      {/* Aplicamos las variables al View raíz de la navegación */}
+    <ThemeContext.Provider value={contextValue}>
       <View style={themeVars} className="flex-1">
         {children}
       </View>

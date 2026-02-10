@@ -1,8 +1,14 @@
 import React, { useMemo, useRef, useEffect } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { FloatingFormContainer, FormPairRows, FormSection } from '@/components/layout/Molecules';
-import { DatePicker, FormButton, SegmentedControl, OptionSelector, Input } from '@/components/ui/UIComponents';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useColorScheme } from 'nativewind';
+
+import { FloatingFormContainer } from '@/components/layout/FloatingFormContainer';
+import { FormPairRows } from '@/components/layout/FormPairRows';
+import { FormSection } from '@/components/layout/FormSection';
+
+import { DatePicker, FormButton, SegmentedControl, OptionSelector } from '@/components/ui/UIComponents';
 import { useTherapistProfile } from '@/features/auth/hooks/useTherapistProfile';
 import { usePatients } from '@/features/patients/hooks/usePatients';
 import { useCreateAppointment } from '@/features/appointments/hooks/useCreateAppointment';
@@ -15,6 +21,69 @@ interface NewAppointmentFormProps {
   onOpenPatientForm?: () => void;
   initialData?: ConsultationItem | null;
 }
+
+// --- Componente Helper: Stepper de Duración ---
+const DurationStepper = ({ value, onChange }: { value: string, onChange: (val: string) => void }) => {
+  const { colorScheme } = useColorScheme();
+  const iconColor = colorScheme === 'dark' ? '#f3f4f6' : '#374151';
+
+  const numericValue = parseInt(value, 10);
+  const currentMinutes = isNaN(numericValue) ? 30 : numericValue;
+  
+  const MIN_DURATION = 30;
+  const MAX_DURATION = 300;
+  const STEP = 30;
+
+  const handleDecrement = () => {
+    if (currentMinutes > MIN_DURATION) {
+      onChange((currentMinutes - STEP).toString());
+    }
+  };
+
+  const handleIncrement = () => {
+    if (currentMinutes < MAX_DURATION) {
+      onChange((currentMinutes + STEP).toString());
+    }
+  };
+
+  const formatDisplay = (minutes: number) => {
+    if (minutes < 60) return `${minutes} min`;
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    if (mins === 0) return `${hours} h`;
+    return `${hours} h ${mins} min`;
+  };
+
+  return (
+    <View className="mt-2">
+      <Text className="text-text-primary dark:text-text-inverse font-bold mb-2 text-sm ml-1 font-sans">
+        Duración
+      </Text>
+      
+      <View className="flex-row items-center justify-between h-14 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-xl px-2">
+        <TouchableOpacity
+          onPress={handleDecrement}
+          disabled={currentMinutes <= MIN_DURATION}
+          className={`w-10 h-10 items-center justify-center rounded-full ${currentMinutes <= MIN_DURATION ? 'opacity-30' : 'active:bg-gray-100 dark:active:bg-gray-800'}`}
+        >
+          <MaterialIcons name="remove" size={24} color={iconColor} />
+        </TouchableOpacity>
+
+        <Text className="text-base font-bold text-text-primary dark:text-text-inverse">
+          {formatDisplay(currentMinutes)}
+        </Text>
+
+        <TouchableOpacity
+          onPress={handleIncrement}
+          disabled={currentMinutes >= MAX_DURATION}
+          className={`w-10 h-10 items-center justify-center rounded-full ${currentMinutes >= MAX_DURATION ? 'opacity-30' : 'active:bg-gray-100 dark:active:bg-gray-800'}`}
+        >
+          <MaterialIcons name="add" size={24} color={iconColor} />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
 
 export const NewAppointmentForm: React.FC<NewAppointmentFormProps> = ({
   visible,
@@ -29,13 +98,11 @@ export const NewAppointmentForm: React.FC<NewAppointmentFormProps> = ({
 
   const formTitle = initialData ? t('formAppointments.editTitle') : t('appointments.newTitle');
 
-
   const { form, actions, ui } = useCreateAppointment(() => {
     onSuccess?.();
   }, initialData); 
 
   useEffect(() => {
-
     if (!visible) actions.resetForm();
   }, [visible]);
 
@@ -105,15 +172,18 @@ export const NewAppointmentForm: React.FC<NewAppointmentFormProps> = ({
             </View>
           </View>
         </FormPairRows>
-        <Input
-          label={t('appointments.durationShort', 'Minutos')}
-          placeholder={t('formAppointments.durationPlaceholder')}
-          keyboardType="number-pad"
-          value={form.duration}
-          onChangeText={form.setDuration}
-          className="text-center"
-          error={ui.errors.duration ? t(ui.errors.duration) : undefined}
+        
+        {/* Stepper de Duración (Sin Input manual) */}
+        <DurationStepper 
+            value={form.duration} 
+            onChange={form.setDuration} 
         />
+        {ui.errors.duration && (
+            <Text className="text-status-danger text-xs mt-1 ml-1 font-medium">
+                {t(ui.errors.duration)}
+            </Text>
+        )}
+
       </FormSection>
 
       <FormSection titleKey={t('formAppointments.recurrence')} iconName='timeline'>
@@ -126,7 +196,6 @@ export const NewAppointmentForm: React.FC<NewAppointmentFormProps> = ({
           onChange={(val) => form.setRecurrence(val as any)}
         />
       
-
       {form.recurrence === 'program' && (
         <View className="mt-6 bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-border-light dark:border-border-dark">
           <Text className="font-bold mb-4 text-text-primary dark:text-text-inverse font-sans text-sm">

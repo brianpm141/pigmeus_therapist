@@ -6,6 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   useFonts,
   Manrope_400Regular,
@@ -96,15 +97,17 @@ export default function RootLayout() {
 
 
   return (
-    <SafeAreaProvider>
-      <AuthProvider>
-        <ThemeProvider>
-          <View className="flex-1 bg-background-light dark:bg-background-dark">
-            <StatusBar style="auto" />
-            <NavigationGuard />
-          </View>
-        </ThemeProvider>
-      </AuthProvider>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            <View className="flex-1 bg-background-light dark:bg-background-dark">
+              <StatusBar style="auto" />
+              <NavigationGuard />
+            </View>
+          </ThemeProvider>
+        </AuthProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
