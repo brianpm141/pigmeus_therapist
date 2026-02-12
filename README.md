@@ -28,42 +28,86 @@ Gestión completa del perfil del terapeuta y configuraciones de la aplicación p
 
 ## 🎨 Temas
 
-La aplicación está diseñada pensando en la comodidad visual del usuario, ofreciendo soporte para temas.
+La aplicación destaca por su capacidad de personalización, ofreciendo una variedad de temas cuidadosamente diseñados para adaptarse a tus preferencias visuales.
+
+<p align="center">
+  <img src="./Capturas/Temas/Tema-Coral.png" width="30%" alt="Tema Coral" />
+  <img src="./Capturas/Temas/Tema-Lavanda.png" width="30%" alt="Tema Lavanda" />
+  <img src="./Capturas/Temas/Tema-Menta.png" width="30%" alt="Tema Menta" />
+</p>
+<p align="center">
+  <img src="./Capturas/Temas/Tema-Oceano.png" width="30%" alt="Tema Oceano" />
+  <img src="./Capturas/Temas/Tema-Pizzarra.png" width="30%" alt="Tema Pizarra" />
+  <img src="./Capturas/Temas/Tema-Rosa.png" width="30%" alt="Tema Rosa" />
+</p>
 
 *   **Tema Claro**: Optimizado para entornos con buena iluminación.
-*   **Tema Oscuro**: (En desarrollo) Ideal para reducir la fatiga visual en entornos oscuros.
+*   **Tema Oscuro**: (En desarrollo).
 
 > **Nota**: Se recomienda utilizar el **Tema Claro** para la mejor experiencia visual en esta versión.
 
-Para más detalles sobre la personalización, consulta la carpeta `Documentacion/Tema`.
+---
+
+## 👥 Pacientes
+
+El módulo de pacientes es el corazón de la aplicación, permitiendo una gestión exhaustiva de los expedientes clínicos.
+
+### Gestión Integral
+Visualiza la lista completa de pacientes con opciones rápidas de búsqueda y filtrado. Accede a los detalles de cada expediente con un solo toque.
+
+<p align="center">
+  <img src="./Capturas/Pacientes/Pacientes-General.png" width="45%" alt="Lista de Pacientes" />
+  <img src="./Capturas/Pacientes/Pacientes-Detalles.png" width="45%" alt="Detalles de Paciente" />
+</p>
+
+### Registro y Edición
+Formularios intuitivos para dar de alta nuevos pacientes o actualizar su información médica y personal en cualquier momento.
+
+<p align="center">
+  <img src="./Capturas/Pacientes/Pacientes-Formulario.png" width="45%" alt="Formulario de Paciente" />
+</p>
 
 ---
 
-## 🛠 Funciones Generales
+## 📅 Citas
 
-El sistema se divide en módulos funcionales clave para cubrir todas las necesidades de la práctica terapéutica:
+Optimiza tu tiempo con un sistema de gestión de citas ágil y flexible.
 
-### 👥 Pacientes
-Módulo central para la administración de expedientes.
-*   **Registro**: Alta de nuevos pacientes con información detallada.
-*   **Historial**: Seguimiento completo de la evolución del paciente.
-*   **Gestión**: Edición y actualización de datos personales y médicos.
+### Agenda y Detalles
+Mantén el control de tus sesiones con una vista clara de las citas programadas. Consulta los detalles de cada sesión, incluyendo el estado (pendiente, completada, cancelada).
 
-### 📅 Citas
-Control total de la agenda del terapeuta.
-*   **Programación**: Agendado rápido de sesiones.
-*   **Recordatorios**: Visualización clara de las próximas citas.
-*   **Estado**: Seguimiento de citas realizadas, pendientes o canceladas.
+<p align="center">
+  <img src="./Capturas/Consultas/Citas-VistaGeneral.png" width="45%" alt="Vista General de Citas" />
+  <img src="./Capturas/Consultas/Citas-Detalles.png" width="45%" alt="Detalles de Cita" />
+</p>
 
-### 🩺 Consultas
-Registro clínico de cada sesión.
-*   **Notas de Evolución**: Documentación detallada del progreso por sesión.
-*   **Diagnóstico**: Registro de evaluaciones y planes de tratamiento.
+### Programación Avanzada
+Crea nuevas citas fácilmente, selecciona pacientes existentes y configura sesiones recurrentes si es necesario.
 
-### 🗓 Calendario
-Vista global de las actividades.
-*   **Organización Visual**: Panorama mensual o semanal de la carga de trabajo.
-*   **Sincronización**: Integración con las citas programadas.
+<p align="center">
+  <img src="./Capturas/Consultas/Citas-Seleccion_Pacientes.png" width="45%" alt="Selección de Pacientes" />
+  <img src="./Capturas/Consultas/Citas-Creacion_Repetida.png" width="45%" alt="Creación de Cita Repetida" />
+</p>
+
+---
+
+## 🗓 Calendario
+
+Visualiza tu carga de trabajo de manera global para una mejor organización.
+
+### Panorama Mensual y Semanal
+El calendario te permite identificar rápidamente los días con mayor actividad y los espacios disponibles.
+
+<p align="center">
+  <img src="./Capturas/Calendario/Calendario-VistaGeneral.png" width="45%" alt="Vista General del Calendario" />
+</p>
+
+### Navegación Rápida
+Desplázate entre meses y semanas con facilidad para planificar a futuro.
+
+<p align="center">
+  <img src="./Capturas/Calendario/Calendario-Navegacion.png" width="45%" alt="Navegación del Calendario" />
+</p>
 
 ---
 
