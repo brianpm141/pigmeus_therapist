@@ -51,8 +51,8 @@ module.exports = {
           'success-soft': '#22c55e15',
           danger: '#ef4444',
           'danger-soft': '#ef444415',
-          info: 'var(--color-primary)', // El color de info ahora también sigue al tema
-          'info-soft': 'var(--color-primary-soft)', // Para fondos suaves de iconos
+          info: 'var(--color-primary)', 
+          'info-soft': 'var(--color-primary-soft)', 
         },
       },
 

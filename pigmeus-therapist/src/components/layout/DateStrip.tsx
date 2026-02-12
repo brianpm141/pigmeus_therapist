@@ -5,7 +5,6 @@ import { useTheme } from '@/core/ThemeContext'; // Ajusta si tu ruta es distinta
 import { format, addDays, isSameDay, startOfDay } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-// --- COMPONENTE ITEM (Optimizado con Memo) ---
 const DateStripItem = React.memo(({ item, isSelected, onSelect, colors }: any) => {
   const dayName = format(item, 'EEE', { locale: es }).replace('.', '').toUpperCase();
   const dayNumber = format(item, 'd');

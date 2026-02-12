@@ -28,21 +28,17 @@ export const TimeSlotGrid: React.FC<TimeSlotGridProps> = ({
   
   const scrollViewRef = useRef<ScrollView>(null);
 
-  // 1. CAMBIO: Intervalo de 60 minutos
   const START_HOUR = 0; 
   const END_HOUR = 24;  
-  const SLOT_DURATION = 60; // <--- Ahora es 1 hora
+  const SLOT_DURATION = 60; 
   
   const ESTIMATED_SLOT_HEIGHT = 96; 
 
-  // --- EFECTO DE AUTO-SCROLL AJUSTADO ---
   useEffect(() => {
     if (isSameDay(selectedDate, new Date())) {
       const now = new Date();
       const currentHour = now.getHours();
       
-      // Como ahora cada slot es 1 hora, el índice es directo (currentHour)
-      // Restamos 1 para dar margen visual (ver la hora anterior)
       const slotsToScroll = Math.max(0, currentHour - 3); 
       
       const yOffset = slotsToScroll * ESTIMATED_SLOT_HEIGHT;
@@ -55,18 +51,14 @@ export const TimeSlotGrid: React.FC<TimeSlotGridProps> = ({
     }
   }, [selectedDate]);
 
-  // --- NUEVA LÓGICA DE REDONDEO (Simplificada para horas) ---
 
-  // Baja siempre al minuto 00 (Ej: 4:15 -> 4:00)
   const getNormalizedStart = (date: Date) => {
     return setMinutes(date, 0); 
   };
 
-  // Sube siempre a la siguiente hora en punto si pasa de 00 (Ej: 5:10 -> 6:00)
   const getNormalizedEnd = (date: Date) => {
     const minutes = date.getMinutes();
     if (minutes === 0) return date; 
-    // Si tiene minutos, subimos a la siguiente hora y ponemos minutos en 0
     return setMinutes(addHours(date, 1), 0); 
   };
 
@@ -101,7 +93,7 @@ export const TimeSlotGrid: React.FC<TimeSlotGridProps> = ({
         renderedAppIds.add(appointment.id);
 
         const realStart = appointment.date.toDate();
-        const duration = appointment.durationMinutes || 60; // Default a 60 min si no hay duración
+        const duration = appointment.durationMinutes || 60; 
         const realEnd = addMinutes(realStart, duration);
         const normalizedEnd = getNormalizedEnd(realEnd); 
 
